@@ -3,35 +3,39 @@ library(twitteR)
 library(NLP)
 library(tm)
 library(SnowballC)
-library(Snowball)
 library(slam)
 library(RWeka)
 library(rJava) 
 library(RWekajars) 
 
-load(file = "toom_tweets.rda")
+load(file = "./dataset/toom_tweets.rda")
 
 toom.df <- twListToDF(toom_tweets)
 
-# build a corpus, and specify the source to be character vectors 
+## Build the corpus, and specify the source to be character vectors 
 toomCorpus <- Corpus(VectorSource(toom.df$text))
 
-# convert to lower case
+## Make it work with the new tm package
+toomCorpus <- tm_map(toomCorpus,
+                     content_transformer(function(x) iconv(x, to='UTF-8-MAC', sub='byte')),
+                     mc.cores=1)
+
+## Convert to lower case
 toomCorpus <- tm_map(toomCorpus, content_transformer(tolower), lazy = TRUE)
 
-# remove punctuation
+## Remove punctuation
 toomCorpus <- tm_map(toomCorpus, content_transformer(removePunctuation))
 
-# remove numbers
+## Remove numbers
 toomCorpus <- tm_map(toomCorpus, content_transformer(removeNumbers))
 
-# remove URLs
+## Remove URLs
 removeURL <- function(x) gsub("http[[:alnum:]]*", "", x) 
 toomCorpus <- tm_map(toomCorpus, content_transformer(removeURL))
 
-# remove stopwords from corpus
+## Remove stopwords from corpus
 toomCorpus <- tm_map(toomCorpus, removeWords, stopwords("german"))
 toomCorpus <- tm_map(toomCorpus, removeWords, stopwords("english"))
 
-# final corpus
+## Final corpus
 tdmtoom <- TermDocumentMatrix(toomCorpus)

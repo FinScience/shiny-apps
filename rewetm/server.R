@@ -40,6 +40,16 @@ shinyServer(function(input, output, session) {
                 )
         })
         
+        
+        ## Getting the data 
+        
+        getTdm <- reactive({
+                switch(input$tdm,
+                       "REWE" = tdmREWE,
+                       "BIPA" = tdmBIPA,
+                       "Toom" = tdmtoom)
+        })
+        
 ############################### ~~~~~~~~1~~~~~~~~ ##############################
 
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
@@ -47,12 +57,12 @@ shinyServer(function(input, output, session) {
         ## Tabset 1
         output$wordPlot <- renderPlot({
                 
-                m <- as.matrix(tdmREWE)
+                m <- as.matrix(getTdm())
                 # calculate the frequency of words and sort it by frequency 
                 word.freq <- sort(rowSums(m), decreasing = TRUE)
                 wordcloud(words = names(word.freq), 
                           freq = word.freq, 
-                          min.freq = 10,
+                          min.freq = input$minfreqWord,
                           random.order = FALSE, 
                           colors=brewer.pal(6, "Dark2"))
                 
@@ -61,7 +71,7 @@ shinyServer(function(input, output, session) {
         ## Tabset 2
         output$ratioPlot <- renderPlot({
         
-                words <- tdmREWE  %>%
+                words <- getTdm()  %>%
                         as.matrix %>%
                         colnames  %>%
                         (function(x) x[nchar(x) < 20])
@@ -78,10 +88,19 @@ shinyServer(function(input, output, session) {
 ############################### ~~~~~~~~2~~~~~~~~ ##############################
         
 ## NAVTAB 2 - Association Plot
+        
+        assocPlotInput <- function() {
+        
+        freq.terms <- findFreqTerms(getTdm(), lowfreq = input$lowfreqAssoc)
+        
+        plot(getTdm(), term = freq.terms, 
+             corThreshold = 0.08, 
+             weighting = TRUE)
+        }
 
         output$assocPlot <- renderPlot({
-                plot(tdmREWE, term = freq.terms, corThreshold = 0.08, 
-                     weighting = TRUE)
+                
+                assocPlotInput()
         })
 
 ############################### ~~~~~~~~3~~~~~~~~ ##############################

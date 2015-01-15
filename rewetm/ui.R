@@ -34,6 +34,7 @@ shinyUI(navbarPage("Twitter Text Mining",
                    #tags$head(includeScript("ga-rewetm.js")),
 
 
+
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
 
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
@@ -43,11 +44,17 @@ shinyUI(navbarPage("Twitter Text Mining",
                  sidebarLayout(
                                   
                          sidebarPanel(
-                                            
-                                 radioButtons("plotType", "Plot type",
-                                              c("Scatter"="p", "Line"="l")
-                                            )
-                                    ),
+                                 radioButtons(inputId = "tdm",
+                                              label = "Select Twitter account:",
+                                              choices = c("REWE", "BIPA", "Toom"),
+                                              selected = "REWE"),
+                                 
+                                 tags$hr(),
+                                 
+                                 sliderInput("minfreqWord", 
+                                             label = "Minimum frequency of words:",
+                                             min = 5, max = 25, value = 10),
+                                 width = 3),
                          
                          mainPanel(
                                  
@@ -73,15 +80,22 @@ shinyUI(navbarPage("Twitter Text Mining",
 
         tabPanel("Association Plot",
                  
-                 verticalLayout(
+                 sidebarPanel(
                          
-                         wellPanel(
-                                 
-                         sliderInput("n", "Number of points", 10, 200,
-                                     value = 50, step = 10)
-                         ),
-                                 
+                         radioButtons(inputId = "tdm",
+                                      label = "Select Twitter account:",
+                                      choices = c("REWE", "BIPA", "Toom"),
+                                      selected = "REWE"),
                          
+                         tags$hr(),
+                         
+                         sliderInput("lowfreqAssoc", 
+                                     label = "Minimum frequency of words:",
+                                     min = 10, max = 50, value = 25),
+                         width = 3),
+                 
+                 mainPanel(
+                                 
                          plotOutput("assocPlot")
                          
                  )
@@ -98,8 +112,8 @@ shinyUI(navbarPage("Twitter Text Mining",
                          sidebarPanel(
                                  
                                  sliderInput("n", "Number of points", 10, 200,
-                                             value = 50, step = 10)
-                         ),
+                                             value = 50, step = 10),
+                                 width = 3),
                          
                          mainPanel(
                          
@@ -127,9 +141,9 @@ shinyUI(navbarPage("Twitter Text Mining",
                                          numericInput(
                                                  inputId = "pagesize",
                                                  label = "Terms per page",
-                                                 10))    
+                                                 10)),    
                 
-                                ),
+                                width = 3),
                 
                 
                         mainPanel(
