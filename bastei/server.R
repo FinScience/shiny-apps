@@ -10,14 +10,16 @@
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
-library(shiny)
-library(shinyIncubator)
-library(zoo)
-library(timeDate)
-library(datasets)
-library(forecast)
-library(knitr)
-library(rmarkdown)
+suppressPackageStartupMessages(c(
+        library(shiny),
+        library(shinyIncubator),
+        library(zoo),
+        library(timeDate),
+        library(datasets),
+        library(forecast),
+        library(knitr),
+        library(rmarkdown)))
+
 
 source("data.R")
 
@@ -123,14 +125,16 @@ shinyServer(function(input, output, session) {
 ############################### ~~~~~~~~~~~~~~~~~ ##############################
                                                         
 ## Forecasting model plot creation                       
-           
+
         plotInput <- function() {
                 x <- forecast(getModel(), h=input$ahead)
+                
                 plot(x, flty = 3, axes = FALSE)
                 a <- seq(as.Date(aTR$Date, format = "%d.%m.%y")[1] + 1, 
                          by = "months", length = length(date) + 11)
                 axis(1, at = as.numeric(a)/365.3 + 1970, 
-                     labels = format(a, format = "%d/%m/%Y"), cex.axis = 0.9)
+                     labels = format(a, format = "%d/%m/%Y"), 
+                     cex.axis = 0.9)
                 axis(2, cex.axis = 0.9, las = 2)
         }
         

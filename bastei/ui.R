@@ -10,14 +10,16 @@
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
-library(shiny)
-library(shinyIncubator)
-library(zoo)
-library(timeDate)
-library(datasets)
-library(forecast)
-library(knitr)
-library(rmarkdown)
+suppressPackageStartupMessages(c(
+        library(shiny),
+        library(shinyIncubator),
+        library(zoo),
+        library(timeDate),
+        library(datasets),
+        library(forecast),
+        library(knitr),
+        library(rmarkdown)))
+
 
 ############################### ~~~~~~~~~~~~~~~~~ ##############################
 
@@ -25,7 +27,9 @@ library(rmarkdown)
 
 shinyUI(fluidPage(
         
-        tags$head(includeScript("ga-bastei.js")),
+        theme = "customsl.css",
+        
+        tags$head(includeScript("./www/ga-bastei.js")),
         
         
         # Application title
@@ -57,7 +61,6 @@ shinyUI(fluidPage(
                 wellPanel(
                 tags$div(selectInput(inputId = "model",
                                     label = "Select a forecasting model:",
-                                    #br(),
                                     choices = c("ARIMA", "ETS", "TBATS", 
                                                 "StructTS", "Holt-Winters", 
                                                 "Theta", "Cubic Spline",
@@ -80,10 +83,10 @@ shinyUI(fluidPage(
                 p("By clicking on the button a plot of the selected 
                    forecasting model and both decomposition plots can 
                    be downloaded."),
-                wellPanel(
-                tags$div(downloadButton("downloadPlot", "Download Model Plot"),
-                         align = "center")
-                ),
+                tags$hr(),
+                tags$div(downloadButton("downloadPlot", "Download Plot"),
+                         align = "center"),
+                
                 width = 3),
         
         
@@ -100,17 +103,19 @@ shinyUI(fluidPage(
                                           align = "center"),
                                  tags$div("Historical Data: Alexa.com | Metric: 
                                  Alexa Traffic Rank - Global", align="center",
-                                 br(),
+                                 tags$br(),
                                  "Forecast based on data from 
-                                 27.06.2014 - 04.01.2015")),
+                                 16.07.2014 - 18.01.2015")),
                         
                         tabPanel("Forecasting Data",
+                                 tags$br(),
                                  tags$div(textOutput("caption2"), 
                                           align = "left"),
                                  tags$br(),
                                  verbatimTextOutput("fmtable")),
                         
                         tabPanel("Decomposition Plots",
+                                 tags$br(),
                                  tags$div(strong("STL Decomposition"), 
                                           align ="center"),
                                  plotOutput("STLdcomp"),
@@ -120,7 +125,7 @@ shinyUI(fluidPage(
                                  (textOutput("caption4")),
                                  tags$hr()),
                         
-                        tabPanel("About", includeMarkdown("expl.md"))
+                        tabPanel("About", includeMarkdown("./about/expl.md"))
                 ),
                 
                 tags$hr(),
