@@ -1,0 +1,105 @@
+---
+output:
+  html_document:
+    bibliography: bibtex
+    highlight: tango
+    keep_md: yes
+    theme: spacelab
+---
+
+### Last Update
+
+```{r}
+Sys.time()
+```
+
+
+### Data Set
+
+```{r, echo=FALSE}
+a <- read.csv(file = "./amnesty.csv", sep=",", header = TRUE)
+r <- read.csv(file = "./redcross.csv", sep=",", header = TRUE)
+p <- read.csv(file = "./peta.csv", sep=",", header = TRUE)
+```
+
+
+The data sets have been directly retrived with an own Twitter application.
+
+Related Twitter Accounts:
+
+* [Amnesty International][1]
+
+        Number of analyzed tweets after cleaning: `r length(a[,1])`
+
+* [American Red Cross][2] 
+
+        Number of analyzed tweets after cleaning: `r length(r[,1])`
+
+* [PETA][3] 
+        
+        Number of analyzed tweets after cleaning: `r length(p[,1])`
+
+***
+
+### Notices
+
+This application is primarily a demo to show what is possible. 
+
+In case of any questions related to this application, feel free to write [me a mail.][4]
+
+***
+
+### Used R Packages
+
+```{r, eval=FALSE}
+library(graph)
+library(twitteR)
+library(NLP)
+library(tm)
+library(shinyIncubator)
+library(grid)
+library(pvclust)
+library(Rgraphviz)
+library(qdapTools)
+library(qdapRegex)
+library(magrittr)
+library(wordcloud)
+library(RColorBrewer)
+library(ggplot2)
+library(RCurl)
+library(bitops)
+library(shinyapps)
+library(BH)
+library(qdap)
+library(SnowballC)
+library(slam)
+library(RWeka)
+library(rJava) 
+library(RWekajars)
+library(memoise)
+library(devtools)
+library(rjson)
+library(bit64)
+library(httr)
+library(plyr)
+```
+
+***
+
+### Last Session Info
+
+```{r}
+sessionInfo()
+```
+
+
+
+[1]: https://twitter.com/amnesty "Amnesty Twitter Account"
+
+[2]: https://twitter.com/RedCross "Red Cross Twitter Account"
+
+[3]: https://twitter.com/peta "PETA Twitter Account"
+
+[4]: http://nierhoff.info/#contact "Contact"
+
+***

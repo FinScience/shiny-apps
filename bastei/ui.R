@@ -27,8 +27,6 @@ suppressPackageStartupMessages(c(
 
 shinyUI(fluidPage(
         
-        theme = "customsl.css",
-        
         tags$head(includeScript("./www/ga-bastei.js")),
         
         
@@ -54,7 +52,7 @@ shinyUI(fluidPage(
                                                 "PMV Raetsel",
                                                 "Praesenta.de",
                                                 "Raeder.de"),
-                                    selected = "Bastei.de"),
+                                    selected = "Beam Ebooks"),
                         align = "left")
                 ),
                 
