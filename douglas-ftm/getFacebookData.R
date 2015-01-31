@@ -27,8 +27,7 @@ Parfumdreams_posts <- getPage(page="parfumdreams",
                          token=fb_oauth, feed = FALSE, n=500)
 iparfumerie_posts <- getPage(page="iparfumerie.de", 
                          token=fb_oauth, feed = FALSE, n=500)
-PointRouge_posts <- getPage(page="PointRougeDeutschland", 
-                         token=fb_oauth, feed = FALSE, n=500)
+
 
 
 ## Save post message column as .csv file
@@ -37,4 +36,4 @@ write.csv(Flaconi_posts[,3], file = "./flaconi.csv")
 write.csv(Pieper_posts[,3], file = "./pieper.csv")
 write.csv(Parfumdreams_posts[,3], file = "./parfumdreams.csv")
 write.csv(iparfumerie_posts[,3], file = "./iparfumerie.csv")
-write.csv(PointRouge_posts[,3], file = "./pointrouge.csv")
+

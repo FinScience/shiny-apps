@@ -76,19 +76,23 @@ img {
 <div id="last-update" class="section level3">
 <h3>Last Update</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre>
-<pre><code>## [1] &quot;2015-01-22 00:11:10 CET&quot;</code></pre>
+<pre><code>## [1] &quot;2015-01-31 21:51:29 CET&quot;</code></pre>
 </div>
 <div id="data-set" class="section level3">
 <h3>Data Set</h3>
-<p>The data sets have been directly retrived with an own Twitter application.</p>
-<p>Related Twitter Accounts:</p>
+<p>The data sets have been directly retrived with an own Facebook application.</p>
+<p>Related Facebook:</p>
 <ul>
-<li><p><a href="https://twitter.com/amnesty" title="Amnesty Twitter Account">Amnesty International</a></p>
-<pre><code>Number of analyzed tweets after cleaning: 557</code></pre></li>
-<li><p><a href="https://twitter.com/RedCross" title="Red Cross Twitter Account">American Red Cross</a></p>
-<pre><code>Number of analyzed tweets after cleaning: 401</code></pre></li>
-<li><p><a href="https://twitter.com/peta" title="PETA Twitter Account">PETA</a></p>
-<pre><code>Number of analyzed tweets after cleaning: 548</code></pre></li>
+<li><p><a href="https://www.facebook.com/DouglasDeutschland" title="Douglas Deutschland">Douglas</a></p>
+<pre><code>Number of analyzed posts after cleaning: 500</code></pre></li>
+<li><p><a href="https://www.facebook.com/flaconi.de" title="Flaconi">Flaconi</a></p>
+<pre><code>Number of analyzed posts after cleaning: 500</code></pre></li>
+<li><p><a href="https://www.facebook.com/Parfuemerie.Pieper" title="Stadt-Parfümerie Pieper">Pieper</a></p>
+<pre><code>Number of analyzed posts after cleaning: 500</code></pre></li>
+<li><p><a href="https://www.facebook.com/parfumdreams" title="Parfumdreams">Parfurmdreams</a></p>
+<pre><code>Number of analyzed posts after cleaning: 500</code></pre></li>
+<li><p><a href="https://www.facebook.com/iparfumerie.de" title="iparfumerie.de">iparfumerie</a></p>
+<pre><code>Number of analyzed posts after cleaning: 500</code></pre></li>
 </ul>
 <hr />
 </div>
@@ -101,7 +105,7 @@ img {
 <div id="used-r-packages" class="section level3">
 <h3>Used R Packages</h3>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(graph)
-<span class="kw">library</span>(twitteR)
+<span class="kw">library</span>(Rfacebook)
 <span class="kw">library</span>(NLP)
 <span class="kw">library</span>(tm)
 <span class="kw">library</span>(shinyIncubator)
@@ -114,22 +118,13 @@ img {
 <span class="kw">library</span>(wordcloud)
 <span class="kw">library</span>(RColorBrewer)
 <span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(rJava)
 <span class="kw">library</span>(RCurl)
 <span class="kw">library</span>(bitops)
-<span class="kw">library</span>(shinyapps)
 <span class="kw">library</span>(BH)
-<span class="kw">library</span>(qdap)
-<span class="kw">library</span>(SnowballC)
-<span class="kw">library</span>(slam)
-<span class="kw">library</span>(RWeka)
-<span class="kw">library</span>(rJava) 
-<span class="kw">library</span>(RWekajars)
-<span class="kw">library</span>(memoise)
-<span class="kw">library</span>(devtools)
-<span class="kw">library</span>(rjson)
-<span class="kw">library</span>(bit64)
-<span class="kw">library</span>(httr)
-<span class="kw">library</span>(plyr)</code></pre>
+<span class="kw">library</span>(ape)
+<span class="kw">library</span>(topicmodels)       
+<span class="kw">library</span>(qdap)</code></pre>
 <hr />
 </div>
 <div id="last-session-info" class="section level3">
@@ -145,10 +140,9 @@ img {
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] bit_1.1-12      bit64_0.9-4     DBI_0.3.1       digest_0.6.8   
-##  [5] evaluate_0.5.5  formatR_1.0     htmltools_0.2.6 httr_0.6.1.9000
-##  [9] knitr_1.9       memoise_0.2.1   rjson_0.2.15    rmarkdown_0.4.2
-## [13] stringr_0.6.2   tools_3.1.2     twitteR_1.1.8   yaml_2.1.13</code></pre>
+##  [1] digest_0.6.8    evaluate_0.5.5  formatR_1.0     htmltools_0.2.6
+##  [5] knitr_1.9       memoise_0.2.1   rmarkdown_0.5.1 stringr_0.6.2  
+##  [9] tools_3.1.2     yaml_2.1.13</code></pre>
 <hr />
 </div>
 

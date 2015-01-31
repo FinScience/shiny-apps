@@ -14,7 +14,6 @@
 
 suppressPackageStartupMessages(c(
         library(graph),
-        library(twitteR),
         library(NLP),
         library(tm),
         library(shinyIncubator),
@@ -27,22 +26,17 @@ suppressPackageStartupMessages(c(
         library(wordcloud),
         library(RColorBrewer),
         library(ggplot2),
+        library(rJava),
         library(RCurl),
         library(bitops),
         library(BH),
+        library(ape),
         library(topicmodels),       
         library(qdap)))
 
 source("globalCorpus.R")
 
 shinyServer(function(input, output, session) {
-        
- 
-        pages <- list("Douglas" = "douglas",
-                      "Flaconi" = "flaconi",
-                      "Pieper" = "pieper",
-                      "Parfumdreams" = "parfumdreams",
-                      "iparfumerie" = "iparfumerie")
 
         
 ############################### ~~~~~~~~1~~~~~~~~ ##############################
@@ -143,9 +137,10 @@ shinyServer(function(input, output, session) {
                 tdm2 <- removeSparseTerms(getTdmcd(), sparse = 0.95)
                 m2 <- as.matrix(tdm2)
                 # Cluster terms
+                
                 distMatrix <- dist(scale(m2))
                 fit <- hclust(distMatrix, method = "ward.D2")
-        
+                
                 plot(fit)
                 rect.hclust(fit, k = input$clusterNumber)
         }
@@ -238,9 +233,8 @@ shinyServer(function(input, output, session) {
         
         tmPlotInput <- function() {
                 
-                dtm <- as.DocumentTermMatrix(getTdmtm())
-                rowTotals <- apply(dtm , 1, sum)
-                dtm.new   <- dtm[rowTotals> 0, ] 
+                rowTotals <- apply(getTdmtm(), 1, sum)
+                dtm.new   <- getTdm()[rowTotals> 0, ] 
                 lda <- LDA(dtm.new, k = 4)
                 term <- terms(lda, 4)
                 term <- apply(term, MARGIN = 2, paste, collapse = ", ")

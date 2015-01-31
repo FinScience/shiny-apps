@@ -14,7 +14,6 @@
 
 suppressPackageStartupMessages(c(
         library(graph),
-        library(twitteR),
         library(NLP),
         library(tm),
         library(shinyIncubator),
@@ -27,10 +26,12 @@ suppressPackageStartupMessages(c(
         library(wordcloud),
         library(RColorBrewer),
         library(ggplot2),
+        library(rJava),
         library(RCurl),
         library(bitops),
         library(BH),
-        library(topicmodels),
+        library(ape),
+        library(topicmodels),       
         library(qdap)))
 
 

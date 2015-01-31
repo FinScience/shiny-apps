@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-01-22 00:11:10 CET"
+## [1] "2015-01-31 21:51:29 CET"
 ```
 
 
@@ -16,21 +16,29 @@ Sys.time()
 
 
 
-The data sets have been directly retrived with an own Twitter application.
+The data sets have been directly retrived with an own Facebook application.
 
-Related Twitter Accounts:
+Related Facebook:
 
-* [Amnesty International][1]
+* [Douglas][1]
 
-        Number of analyzed tweets after cleaning: 557
+        Number of analyzed posts after cleaning: 500
 
-* [American Red Cross][2] 
+* [Flaconi][2] 
 
-        Number of analyzed tweets after cleaning: 401
+        Number of analyzed posts after cleaning: 500
 
-* [PETA][3] 
+* [Pieper][3] 
         
-        Number of analyzed tweets after cleaning: 548
+        Number of analyzed posts after cleaning: 500
+        
+* [Parfurmdreams][4] 
+        
+        Number of analyzed posts after cleaning: 500
+
+* [iparfumerie][5] 
+        
+        Number of analyzed posts after cleaning: 500
 
 ***
 
@@ -38,7 +46,7 @@ Related Twitter Accounts:
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][4]
+In case of any questions related to this application, feel free to write [me a mail.][6]
 
 ***
 
@@ -47,7 +55,7 @@ In case of any questions related to this application, feel free to write [me a m
 
 ```r
 library(graph)
-library(twitteR)
+library(Rfacebook)
 library(NLP)
 library(tm)
 library(shinyIncubator)
@@ -60,22 +68,13 @@ library(magrittr)
 library(wordcloud)
 library(RColorBrewer)
 library(ggplot2)
+library(rJava)
 library(RCurl)
 library(bitops)
-library(shinyapps)
 library(BH)
+library(ape)
+library(topicmodels)       
 library(qdap)
-library(SnowballC)
-library(slam)
-library(RWeka)
-library(rJava) 
-library(RWekajars)
-library(memoise)
-library(devtools)
-library(rjson)
-library(bit64)
-library(httr)
-library(plyr)
 ```
 
 ***
@@ -98,20 +97,23 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] bit_1.1-12      bit64_0.9-4     DBI_0.3.1       digest_0.6.8   
-##  [5] evaluate_0.5.5  formatR_1.0     htmltools_0.2.6 httr_0.6.1.9000
-##  [9] knitr_1.9       memoise_0.2.1   rjson_0.2.15    rmarkdown_0.4.2
-## [13] stringr_0.6.2   tools_3.1.2     twitteR_1.1.8   yaml_2.1.13
+##  [1] digest_0.6.8    evaluate_0.5.5  formatR_1.0     htmltools_0.2.6
+##  [5] knitr_1.9       memoise_0.2.1   rmarkdown_0.5.1 stringr_0.6.2  
+##  [9] tools_3.1.2     yaml_2.1.13
 ```
 
 
 
-[1]: https://twitter.com/amnesty "Amnesty Twitter Account"
+[1]: https://www.facebook.com/DouglasDeutschland "Douglas Deutschland"
 
-[2]: https://twitter.com/RedCross "Red Cross Twitter Account"
+[2]: https://www.facebook.com/flaconi.de "Flaconi"
 
-[3]: https://twitter.com/peta "PETA Twitter Account"
+[3]: https://www.facebook.com/Parfuemerie.Pieper "Stadt-Parfümerie Pieper"
 
-[4]: http://nierhoff.info/#contact "Contact"
+[4]: https://www.facebook.com/parfumdreams "Parfumdreams"
+
+[5]: https://www.facebook.com/iparfumerie.de "iparfumerie.de"
+
+[6]: http://nierhoff.info/#contact "Contact"
 
 ***

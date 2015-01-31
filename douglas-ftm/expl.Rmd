@@ -17,27 +17,37 @@ Sys.time()
 ### Data Set
 
 ```{r, echo=FALSE}
-a <- read.csv(file = "./amnesty.csv", sep=",", header = TRUE)
-r <- read.csv(file = "./redcross.csv", sep=",", header = TRUE)
-p <- read.csv(file = "./peta.csv", sep=",", header = TRUE)
+d <- read.csv(file = "./data/douglas.csv", sep=",", header = TRUE)
+f <- read.csv(file = "./data/flaconi.csv", sep=",", header = TRUE)
+pi <- read.csv(file = "./data/pieper.csv", sep=",", header = TRUE)
+pa <- read.csv(file = "./data/parfumdreams.csv", sep=",", header = TRUE)
+i <- read.csv(file = "./data/iparfumerie.csv", sep=",", header = TRUE)
 ```
 
 
-The data sets have been directly retrived with an own Twitter application.
+The data sets have been directly retrived with an own Facebook application.
 
-Related Twitter Accounts:
+Related Facebook:
 
-* [Amnesty International][1]
+* [Douglas][1]
 
-        Number of analyzed tweets after cleaning: `r length(a[,1])`
+        Number of analyzed posts after cleaning: `r length(d[,1])`
 
-* [American Red Cross][2] 
+* [Flaconi][2] 
 
-        Number of analyzed tweets after cleaning: `r length(r[,1])`
+        Number of analyzed posts after cleaning: `r length(f[,1])`
 
-* [PETA][3] 
+* [Pieper][3] 
         
-        Number of analyzed tweets after cleaning: `r length(p[,1])`
+        Number of analyzed posts after cleaning: `r length(pi[,1])`
+        
+* [Parfurmdreams][4] 
+        
+        Number of analyzed posts after cleaning: `r length(pa[,1])`
+
+* [iparfumerie][5] 
+        
+        Number of analyzed posts after cleaning: `r length(i[,1])`
 
 ***
 
@@ -45,7 +55,7 @@ Related Twitter Accounts:
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][4]
+In case of any questions related to this application, feel free to write [me a mail.][6]
 
 ***
 
@@ -53,7 +63,7 @@ In case of any questions related to this application, feel free to write [me a m
 
 ```{r, eval=FALSE}
 library(graph)
-library(twitteR)
+library(Rfacebook)
 library(NLP)
 library(tm)
 library(shinyIncubator)
@@ -66,22 +76,13 @@ library(magrittr)
 library(wordcloud)
 library(RColorBrewer)
 library(ggplot2)
+library(rJava)
 library(RCurl)
 library(bitops)
-library(shinyapps)
 library(BH)
+library(ape)
+library(topicmodels)       
 library(qdap)
-library(SnowballC)
-library(slam)
-library(RWeka)
-library(rJava) 
-library(RWekajars)
-library(memoise)
-library(devtools)
-library(rjson)
-library(bit64)
-library(httr)
-library(plyr)
 ```
 
 ***
@@ -94,12 +95,16 @@ sessionInfo()
 
 
 
-[1]: https://twitter.com/amnesty "Amnesty Twitter Account"
+[1]: https://www.facebook.com/DouglasDeutschland "Douglas Deutschland"
 
-[2]: https://twitter.com/RedCross "Red Cross Twitter Account"
+[2]: https://www.facebook.com/flaconi.de "Flaconi"
 
-[3]: https://twitter.com/peta "PETA Twitter Account"
+[3]: https://www.facebook.com/Parfuemerie.Pieper "Stadt-Parfümerie Pieper"
 
-[4]: http://nierhoff.info/#contact "Contact"
+[4]: https://www.facebook.com/parfumdreams "Parfumdreams"
+
+[5]: https://www.facebook.com/iparfumerie.de "iparfumerie.de"
+
+[6]: http://nierhoff.info/#contact "Contact"
 
 ***
