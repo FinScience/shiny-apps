@@ -1,4 +1,2 @@
-# TTMA
-Twitter Text Mining App
+http://apps.nierhoff.info/douglas-ftm
 
-https://nierhoff.shinyapps.io/TTMA/
