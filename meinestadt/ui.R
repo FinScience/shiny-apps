@@ -24,6 +24,7 @@ suppressPackageStartupMessages(c(
         library(reshape),
         library(DT),
         library(RColorBrewer),
+        library(googleVis),
         library(BreakoutDetection),
         library(rmarkdown)))
 
@@ -202,7 +203,35 @@ tabPanel("Decomposition",
          )
          
 ),
-                   
+ 
+############################### ~~~~~~~~5~~~~~~~~ ##############################
+
+## NAVTAB 5 - Calendar View
+
+tabPanel("Calendar View",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tabFive",
+                                      label = "Select a website:",
+                                      choices = c("meinestadt.de","yellowmap.de", 
+                                                  "gelbeseiten.de", "dasoertliche.de", 
+                                                  "goyellow.de"),
+                                      selected = "meinestadt.de"),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         htmlOutput("calendarPlot"),
+                         
+                         width = 6)
+                 
+         )
+         
+),
+
 ############################### ~~~~~~~~A~~~~~~~~ ##############################
                    
 ## About
@@ -223,6 +252,19 @@ tabPanel("About",
 ## Footer
                    
 tags$hr(),
+
+tags$span(style="color:darkslategrey", 
+          tags$div(textOutput("dataPeriodCaption"), 
+                   align = "center")
+),
+
+tags$span(style="color:darkslategrey", 
+          tags$div("Data source: Alexa.com | Metric: Alexa Time on Site", 
+                   align="center")
+),
+
+tags$br(),
+
 tags$span(style="color:grey", 
           tags$footer(("© 2015 - "), 
                       tags$a(

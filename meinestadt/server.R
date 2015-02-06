@@ -24,6 +24,7 @@ suppressPackageStartupMessages(c(
         library(reshape),
         library(DT),
         library(RColorBrewer),
+        library(googleVis),
         library(BreakoutDetection),
         library(rmarkdown)))
 
@@ -428,7 +429,51 @@ getDataset4 <- reactive({
         output$STLdcomp <- renderPlot({
                 plotSTLdcomp()
         })
-   
+
+############################### ~~~~~~~~5~~~~~~~~ ##############################
+
+## NAVTAB 5 - Calendar View
+
+## Getting data
+
+getDataset5 <- reactive({
+        switch(input$tabFive,
+               "meinestadt.de" = tos[,2],
+               "yellowmap.de" = tos[,3],
+               "gelbeseiten.de" = tos[,4],
+               "dasoertliche.de" = tos[,5],
+               "goyellow.de" = tos[,6])
+        
+})
+
+## Calendar plot function
+
+calendarPlotInput <- function() {
+        Date <- as.Date(tos$Date, format = "%d.%m.%y")
+        Date <- as.POSIXlt(Date)
+        calDF <- data.frame(Date, getDataset5())
+        names(calDF)[2] <- paste("Values")
+        
+        gvisCalendar(calDF, 
+                     datevar ="Date", 
+                     numvar = "Values",
+                     options =list(
+                             title = input$tabFive,
+                             height = 350,
+                             calendar = "{yearLabel: { fontName: 'Times-Roman',
+                                    fontSize: 32, color: '#1EB18A', bold: true},
+                                    cellSize: 10,
+                                    cellColor: { stroke: 'grey', strokeOpacity: 0.2 },
+                                    focusedCellColor: {stroke:'red'}}")
+                )
+        }
+
+        output$calendarPlot <- renderGvis({
+        
+                calendarPlotInput()      
+        })
+
+
 ############################### ~~~~~~~~F~~~~~~~~ ##############################
 
 ## Footer
