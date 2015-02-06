@@ -223,26 +223,33 @@ tabPanel("About",
 ## Footer
                    
 tags$hr(),
-
-tags$span(style="color:darkslategrey", 
-          tags$div(textOutput("dataPeriodCaption"), 
-                        align = "center")
-         ),
-
-tags$span(style="color:darkslategrey", 
-          tags$div("Data source: Alexa.com | Metric: Alexa Time on Site", 
-                   align="center")
-        ),
-
-tags$br(),
-
 tags$span(style="color:grey", 
-          tags$footer(("2015 - Created by"), 
+          tags$footer(("© 2015 - "), 
                       tags$a(
                               href="http://nierhoff.info",
                               target="_blank",
                               "Maximilian H. Nierhoff."), 
-                      align = "center")
+                      tags$br(),
+                      ("Built with"), tags$a(
+                              href="http://cran.r-project.org",
+                              target="_blank",
+                              "R,"),
+                      tags$a(
+                              href="http://shiny.rstudio.com",
+                              target="_blank",
+                              "Shiny"),
+                      ("&"), tags$a(
+                              href="http://www.rstudio.com/products/shiny/shiny-server",
+                              target="_blank",
+                              "Shiny Server."),
+                      ("Hosted on"), tags$a(
+                              href="https://www.digitalocean.com/?refcode=f34ade566630",
+                              target="_blank",
+                              "DigitalOcean."),
+                      
+                      align = "center"),
+          
+          tags$br()
           
         )
 )
