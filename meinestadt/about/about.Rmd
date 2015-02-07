@@ -204,7 +204,7 @@ library(rmarkdown)
 ### Last Session Info
 
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
 
 

@@ -275,7 +275,7 @@ tags$span(style="color:grey",
                               "Maximilian H. Nierhoff."), 
                       tags$br(),
                       ("Built with"), tags$a(
-                              href="http://cran.r-project.org",
+                              href="http://www.r-project.org/",
                               target="_blank",
                               "R,"),
                       tags$a(
