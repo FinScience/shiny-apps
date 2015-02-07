@@ -17,6 +17,7 @@ suppressPackageStartupMessages(c(
         library(NLP),
         library(tm),
         library(shinyIncubator),
+        library(shinythemes),
         library(grid),
         library(pvclust),
         library(Rgraphviz),
@@ -299,8 +300,8 @@ shinyServer(function(input, output, session) {
                 freqPlot <- ggplot(freq.df, aes(x = term, y = freq, fill = freq)) 
                 freqPlot + geom_bar(width = 0.7, stat = "identity") +
                         labs(title = "Most Frequent Terms") +
-                        labs(y = "Terms") + 
-                        labs(x = "Count") + 
+                        labs(y = "Count") + 
+                        labs(x = "Terms") + 
                         coord_flip() +
                         theme_bw()
         }

@@ -83,6 +83,7 @@ library(BH)
 library(ape)
 library(topicmodels)       
 library(qdap)
+library(shinythemes)
 ```
 
 ***
@@ -90,7 +91,7 @@ library(qdap)
 ### Last Session Info
 
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
 
 
