@@ -111,7 +111,7 @@ getDataset1 <- reactive({
                         ylab = "Time on Site in seconds",
                         col = customCol,
                         xaxt = "n")
-                legend("topleft", legNames, lty = 0,text.col = customCol)
+                legend("topright", legNames, lty = 0,text.col = customCol)
         }
 
         output$clinePlot <- renderPlot({
@@ -164,7 +164,7 @@ getDataset1 <- reactive({
                 mydensity <- density(getDataset1())
                 mydensity$y <- mydensity$y * multiplier[1]
                 
-                plot(histogramPlot, 
+                plot(histogramPlot,
                      main = input$tabOne,
                      xlab = "Time on Site in seconds",
                      col = "mintcream")
@@ -172,7 +172,7 @@ getDataset1 <- reactive({
                 lines(mydensity)
                 
                 myx <- seq(min(getDataset1()), max(getDataset1()), 
-                           length.out= 100)
+                           length.out = 100)
                 mymean <- mean(getDataset1())
                 mysd <- sd(getDataset1())
                 
