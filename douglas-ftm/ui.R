@@ -48,7 +48,7 @@ shinyUI(navbarPage("Facebook Text Mining",
 
         tabPanel("Words",
                  
-                 #tags$head(includeScript("./www/ga-douglas-ftm.js")),
+                 tags$head(includeScript("./js/ga-douglas-ftm.js")),
                  
                  sidebarLayout(
                                   
