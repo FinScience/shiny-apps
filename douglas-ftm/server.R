@@ -240,6 +240,7 @@ shinyServer(function(input, output, session) {
                 term <- terms(lda, 4)
                 term <- apply(term, MARGIN = 2, paste, collapse = ", ")
                 topic <- topics(lda, 1)
+                topic <- data.frame(topic)
                 topicPlot <- ggplot(topic, aes(x = term, fill = Term[topic])) 
                 topicPlot + geom_density +
                         labs(title = "Most Frequent Terms") +

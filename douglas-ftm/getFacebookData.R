@@ -29,11 +29,10 @@ iparfumerie_posts <- getPage(page="iparfumerie.de",
                          token=fb_oauth, feed = FALSE, n=500)
 
 
-
 ## Save post message column as .csv file
-write.csv(Douglas_posts[,3], file = "./douglas.csv")
-write.csv(Flaconi_posts[,3], file = "./flaconi.csv")
-write.csv(Pieper_posts[,3], file = "./pieper.csv")
-write.csv(Parfumdreams_posts[,3], file = "./parfumdreams.csv")
-write.csv(iparfumerie_posts[,3], file = "./iparfumerie.csv")
+write.csv(Douglas_posts[,3], file = "./data/douglas.csv")
+write.csv(Flaconi_posts[,3], file = "./data/flaconi.csv")
+write.csv(Pieper_posts[,3], file = "./data/pieper.csv")
+write.csv(Parfumdreams_posts[,3], file = "./data/parfumdreams.csv")
+write.csv(iparfumerie_posts[,3], file = "./data/iparfumerie.csv")
 
