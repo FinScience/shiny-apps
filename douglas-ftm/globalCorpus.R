@@ -6,9 +6,9 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##       Live version of this app: http://apps.nierhoff.info/douglas-ftm      ##
 ##                                                                            ##
-##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##  Github: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas-ftm  ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################  
 
@@ -47,7 +47,7 @@ getTermMatrix <- memoise(function(page) {
         
         ## Make it work with the new tm package
         myCorpus <- tm_map(myCorpus,
-                           content_transformer(function(x) iconv(x, to="UTF-8-MAC", sub="byte")),
+                           content_transformer(function(x) iconv(x, to="UTF-8", sub="byte")),
                            mc.cores=1)
         
         ## Convert to lower case

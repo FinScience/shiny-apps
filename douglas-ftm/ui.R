@@ -1,16 +1,16 @@
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 ##                                                                            ##
-##                        Text Mining of Twitter Tweets                       ##
+##                        Text Mining of Facebook Posts                       ##
 ##                                                                            ##            
 ##                    App & Code by Maximilian H. Nierhoff                    ##
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##       Live version of this app: http://apps.nierhoff.info/douglas-ftm      ##
 ##                                                                            ##
-##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##  Github: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas-ftm  ##
 ##                                                                            ##
-################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################  
 
 suppressPackageStartupMessages(c(
         library(graph),
@@ -48,7 +48,7 @@ shinyUI(navbarPage("Facebook Text Mining",
 
         tabPanel("Words",
                  
-                 #tags$head(includeScript("./www/ga-ttma.js")),
+                 #tags$head(includeScript("./www/ga-douglas-ftm.js")),
                  
                  sidebarLayout(
                                   
@@ -197,7 +197,7 @@ tabPanel("Topic Modelling",
                                 
                                 sliderInput("freqNumber", 
                                             label = "Minimum frequency of terms:",
-                                            min = 10, max = 100, value = 35),
+                                            min = 10, max = 100, value = 25),
                                 
                                 width = 3),
                 
@@ -236,7 +236,7 @@ tabPanel("Topic Modelling",
                         column(1,
                                p("")),
                         column(10,
-                               includeMarkdown("./expl.md")),
+                               includeMarkdown("./about/expl.md")),
                         column(1,
                                p(""))
                         )
@@ -246,16 +246,36 @@ tabPanel("Topic Modelling",
 
 ## Footer
 
-        tags$hr(),
+tags$hr(),
 
-        tags$span(style="color:grey", 
-                  tags$footer(("2015 - Created by"), 
-                              tags$a(
-                                      href="http://nierhoff.info",
-                                      target="_blank",
-                                      "Maximilian H. Nierhoff."), 
-                              align = "center")
-                
-                )
-        )
+tags$span(style="color:grey", 
+          tags$footer(("© 2015 - "), 
+                      tags$a(
+                              href="http://nierhoff.info",
+                              target="_blank",
+                              "Maximilian H. Nierhoff."), 
+                      tags$br(),
+                      ("Built with"), tags$a(
+                              href="http://www.r-project.org/",
+                              target="_blank",
+                              "R,"),
+                      tags$a(
+                              href="http://shiny.rstudio.com",
+                              target="_blank",
+                              "Shiny"),
+                      ("&"), tags$a(
+                              href="http://www.rstudio.com/products/shiny/shiny-server",
+                              target="_blank",
+                              "Shiny Server."),
+                      ("Hosted on"), tags$a(
+                              href="https://www.digitalocean.com/?refcode=f34ade566630",
+                              target="_blank",
+                              "DigitalOcean."),
+                      
+                      align = "center"),
+          
+          tags$br()
+          
+)
+)
 )

@@ -1,0 +1,94 @@
+---
+output:
+  html_document:
+    bibliography: bibtex
+    highlight: tango
+    keep_md: yes
+    theme: spacelab
+---
+
+### Last Update
+
+```{r}
+Sys.time()
+```
+
+
+### Data Set
+
+The data sets have been directly retrived with an own Facebook application.
+
+From each of following Facebook pages the last 500 posts have been imported.
+
+Related pages:
+
+* [Douglas][1]
+
+* [Flaconi][2] 
+
+* [Pieper][3] 
+        
+* [Parfurmdreams][4] 
+
+* [iparfumerie][5] 
+
+***
+
+### Notices
+
+This application is primarily a demo to show what is possible. 
+
+In case of any questions related to this application, feel free to write [me a mail.][6]
+
+***
+
+### Used R Packages
+
+```{r, eval=FALSE}
+library(graph)
+library(Rfacebook)
+library(NLP)
+library(tm)
+library(shinyIncubator)
+library(grid)
+library(pvclust)
+library(Rgraphviz)
+library(qdapTools)
+library(qdapRegex)
+library(magrittr)
+library(wordcloud)
+library(RColorBrewer)
+library(ggplot2)
+library(rJava)
+library(RCurl)
+library(bitops)
+library(BH)
+library(ape)
+library(topicmodels)       
+library(qdap)
+library(shinythemes)
+```
+
+***
+
+### Last Session Info
+
+```{r}
+devtools::session_info()
+```
+
+
+
+[1]: https://www.facebook.com/DouglasDeutschland "Douglas Deutschland"
+
+[2]: https://www.facebook.com/flaconi.de "Flaconi"
+
+[3]: https://www.facebook.com/Parfuemerie.Pieper "Stadt-Parfümerie Pieper"
+
+[4]: https://www.facebook.com/parfumdreams "Parfumdreams"
+
+[5]: https://www.facebook.com/iparfumerie.de "iparfumerie.de"
+
+[6]: http://nierhoff.info/#contact "Contact"
+
+***

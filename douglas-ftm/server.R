@@ -1,16 +1,16 @@
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 ##                                                                            ##
-##                        Text Mining of Twitter Tweets                       ##
+##                        Text Mining of Facebook Posts                       ##
 ##                                                                            ##            
 ##                    App & Code by Maximilian H. Nierhoff                    ##
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##       Live version of this app: http://apps.nierhoff.info/douglas-ftm      ##
 ##                                                                            ##
-##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
+##  Github: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas-ftm  ##
 ##                                                                            ##
-################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################  
 
 suppressPackageStartupMessages(c(
         library(graph),

@@ -1,53 +1,33 @@
----
-output:
-  html_document:
-    bibliography: bibtex
-    highlight: tango
-    keep_md: yes
-    theme: spacelab
----
 
 ### Last Update
 
-```{r}
+
+```r
 Sys.time()
+```
+
+```
+## [1] "2015-02-09 23:40:09 CET"
 ```
 
 
 ### Data Set
 
-```{r, echo=FALSE}
-d <- read.csv(file = "./data/douglas.csv", sep=",", header = TRUE)
-f <- read.csv(file = "./data/flaconi.csv", sep=",", header = TRUE)
-pi <- read.csv(file = "./data/pieper.csv", sep=",", header = TRUE)
-pa <- read.csv(file = "./data/parfumdreams.csv", sep=",", header = TRUE)
-i <- read.csv(file = "./data/iparfumerie.csv", sep=",", header = TRUE)
-```
-
-
 The data sets have been directly retrived with an own Facebook application.
 
-Related Facebook:
+From each of following Facebook pages the last 500 posts have been imported.
+
+Related pages:
 
 * [Douglas][1]
 
-        Number of analyzed posts after cleaning: `r length(d[,1])`
-
 * [Flaconi][2] 
-
-        Number of analyzed posts after cleaning: `r length(f[,1])`
 
 * [Pieper][3] 
         
-        Number of analyzed posts after cleaning: `r length(pi[,1])`
-        
 * [Parfurmdreams][4] 
-        
-        Number of analyzed posts after cleaning: `r length(pa[,1])`
 
 * [iparfumerie][5] 
-        
-        Number of analyzed posts after cleaning: `r length(i[,1])`
 
 ***
 
@@ -61,7 +41,8 @@ In case of any questions related to this application, feel free to write [me a m
 
 ### Used R Packages
 
-```{r, eval=FALSE}
+
+```r
 library(graph)
 library(Rfacebook)
 library(NLP)
@@ -90,8 +71,41 @@ library(shinythemes)
 
 ### Last Session Info
 
-```{r}
+
+```r
 devtools::session_info()
+```
+
+```
+## Session info --------------------------------------------------------------
+```
+
+```
+##  setting  value                       
+##  version  R version 3.1.2 (2014-10-31)
+##  system   x86_64, darwin13.4.0        
+##  ui       X11                         
+##  language (EN)                        
+##  collate  de_DE.UTF-8                 
+##  tz       Europe/Berlin
+```
+
+```
+## Packages ------------------------------------------------------------------
+```
+
+```
+##  package    * version date       source        
+##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.2)
+##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.2)
+##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.0)
+##  formatR    * 1.0     2014-08-25 CRAN (R 3.1.1)
+##  htmltools  * 0.2.6   2014-09-08 CRAN (R 3.1.1)
+##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.2)
+##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.2)
+##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.2)
+##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.2)
+##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.0)
 ```
 
 
