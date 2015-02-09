@@ -39,7 +39,7 @@ shinyUI(navbarPage("Time on Site Analysis",
 ## NAVTAB 1 - EDA
 tabPanel("Overview",
          
-         #tags$head(includeScript("./js/ga-mietwagen.js")),
+         tags$head(includeScript("./js/ga-mietwagen.js")),
          
          sidebarLayout(
                  
