@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-02-07 15:37:29 CET"
+## [1] "2015-02-09 23:25:35 CET"
 ```
 
 ***
@@ -26,15 +26,13 @@ The presented plots, forecasts and calculations relate to the Alexa Time on Site
 
 Related websites:
 
-* [Greenpeace][2]
+* [Douglas][2]
 
-* [Amnesty International][3]
+* [iparfumerie International][3]
 
-* [PETA][4]
+* [Flaconi][4]
 
-* [Red Cross][5]
-
-* [Unicef][6]
+* [Parfumdreams][5]
 
 
 ***
@@ -43,7 +41,7 @@ Related websites:
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][7]
+In case of any questions related to this application, feel free to write [me a mail.][6]
 
 ***
 
@@ -160,7 +158,7 @@ Hyndman RJ and Khandakar Y (2008). “Automatic time series forecasting: the for
 
 ### Third Tab - Breakout Detection
 
-The Breakout Detection is being solved through the Twitter R package with the respective name. You can check the code and more information in their [repo on Github.][9]
+The Breakout Detection is being solved through the Twitter R package with the respective name. You can check the code and more information in their [repo on Github.][8]
 
 > The underlying algorithm – referred to as E-Divisive with Medians (EDM) – employs energy statistics to detect divergence in mean. Note that EDM can also be used detect change in distribution in a given time series. EDM uses robust statistical metrics, viz., median, and estimates the statistical significance of a breakout through a permutation test.
 
@@ -174,7 +172,7 @@ This decomposition formula splits the data into seasonal, trend and irregular co
 
 #### STL Decomposition
 
-> STL is a very versatile and robust method for decomposing time series. STL is an acronym for “Seasonal and Trend decomposition using Loess”, while Loess is a method for estimating nonlinear relationships. The STL method was developed by Cleveland et al. (1990) [(Source)][10]
+> STL is a very versatile and robust method for decomposing time series. STL is an acronym for “Seasonal and Trend decomposition using Loess”, while Loess is a method for estimating nonlinear relationships. The STL method was developed by Cleveland et al. (1990) [(Source)][9]
 
 ***
 
@@ -246,24 +244,22 @@ devtools::session_info()
 ```
 
 
-[1]: https://github.com/mhnierhoff/TOSA "TOSA Github Repo"
+[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas "Github Repo"
 
-[2]: http://www.greenpeace.org/international/en/ "Greenpeace Website"
+[2]: http://www.douglas.de "Douglas Website"
 
-[3]: http://www.amnesty.org "Amnesty Website"
+[3]: http://www.iparfumerie.de "iparfumerie Website"
 
-[4]: http://www.peta.org "PETA Website"
+[4]: http://www.flaconi.de "Flaconi Website"
 
-[5]: http://www.redcross.org "Red Cross Website"
+[5]: http://www.parfumdreams.de "Parfumdreams Website"
 
-[6]: http://www.unicef.org "Unicef Website"
+[6]: http://nierhoff.info/#contact "Contact"
 
-[7]: http://nierhoff.info/#contact "Contact"
+[7]: http://en.wikipedia.org/wiki/Exploratory_data_analysis "EDA on wikipeda.org"
 
-[8]: http://en.wikipedia.org/wiki/Exploratory_data_analysis "EDA on wikipeda.org"
+[8]: https://github.com/twitter/BreakoutDetection "Twitter Breakout Detection R Package"
 
-[9]: https://github.com/twitter/BreakoutDetection "Twitter Breakout Detection R Package"
-
-[10]: https://www.otexts.org/fpp/6/5 "STL Decomposition"
+[9]: https://www.otexts.org/fpp/6/5 "STL Decomposition"
 
 ***

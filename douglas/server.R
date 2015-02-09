@@ -6,7 +6,7 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: https://apps.nierhoff.info/douglas       ##
+##         Live version of this app: http://apps.nierhoff.info/douglas        ##
 ##                                                                            ##
 ##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas    ##
 ##                                                                            ##

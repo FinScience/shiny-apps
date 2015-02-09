@@ -6,7 +6,7 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: https://apps.nierhoff.info/douglas       ##
+##         Live version of this app: http://apps.nierhoff.info/douglas        ##
 ##                                                                            ##
 ##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas    ##
 ##                                                                            ##
@@ -39,7 +39,7 @@ shinyUI(navbarPage("Time on Site Analysis",
 ## NAVTAB 1 - EDA
 tabPanel("Overview",
          
-         #tags$head(includeScript("./js/ga-tosa.js")),
+         tags$head(includeScript("./js/ga-douglas.js")),
          
          sidebarLayout(
                  
