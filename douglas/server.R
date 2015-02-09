@@ -109,7 +109,7 @@ getDataset1 <- reactive({
                         ylab = "Time on Site in seconds",
                         col = customCol,
                         xaxt = "n")
-                legend("topleft", legNames, lty = 0,text.col = customCol)
+                legend("topright", legNames, lty = 0,text.col = customCol)
         }
 
         output$clinePlot <- renderPlot({

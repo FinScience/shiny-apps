@@ -36,8 +36,7 @@ shinyUI(navbarPage("Time on Site Analysis",
                    
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
 
-## NAVTAB 1 - Interactive Chart
-
+## NAVTAB 1 - EDA
 tabPanel("Overview",
          
          #tags$head(includeScript("./js/ga-tosa.js")),
@@ -108,11 +107,12 @@ tabPanel("Forecasting",
                          
                          selectInput(inputId = "model",
                                      label = "Select a Forecasting model:",
-                                     choices = c("Douglas",
-                                                 "iparfumerie",
-                                                 "Flaconi",
-                                                 "Parfumdreams"),
-                                     selected = "Douglas"),
+                                     choices = c("ARIMA", "ETS", "TBATS", 
+                                                 "StructTS", "Holt-Winters", 
+                                                 "Theta", "Cubic Spline",
+                                                 "Random Walk", "Naive",
+                                                 "Mean"),
+                                     selected = "ARIMA"),
                          
                          tags$hr(),
                          
