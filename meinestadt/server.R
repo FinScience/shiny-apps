@@ -35,7 +35,7 @@ shinyServer(function(input, output, session) {
         
 ############################### ~~~~~~~~1~~~~~~~~ ##############################
         
-## NAVTAB 1 - Interactive Chart
+## NAVTAB 1 - EDA
 
 getDataset1 <- reactive({
         switch(input$tabOne,
@@ -204,13 +204,20 @@ getDataset1 <- reactive({
 
 ## Tabset 4
 
+## Generate a summary view
+
+output$summaryView <- renderPrint({
+        summary(getDataset1())
+})
+
+
+## Tabset 5
+
 ## Generate an HTML table view of the data
 
-        output$dataTable <- renderDataTable({
-                datatable(tos)
-        })
-                
-        
+output$dataTable <- renderDataTable({
+        datatable(tos)
+})  
 
         
 ############################### ~~~~~~~~2~~~~~~~~ ##############################

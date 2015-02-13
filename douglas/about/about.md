@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-02-09 23:25:35 CET"
+## [1] "2015-02-13 19:07:56 CET"
 ```
 
 ***
@@ -34,6 +34,12 @@ Related websites:
 
 * [Parfumdreams][5]
 
+
+***
+
+### Time on Site Metric
+
+> The estimated daily time on site in seconds for this site. Historical data not available for sites ranked > 100,000. (Pro Only)
 
 ***
 

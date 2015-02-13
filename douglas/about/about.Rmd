@@ -40,6 +40,12 @@ Related websites:
 
 ***
 
+### Time on Site Metric
+
+> The estimated daily time on site in seconds for this site. Historical data not available for sites ranked > 100,000. (Pro Only)
+
+***
+
 ### Notices
 
 This application is primarily a demo to show what is possible. 

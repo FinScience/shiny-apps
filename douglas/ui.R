@@ -75,7 +75,10 @@ tabPanel("Overview",
                                  tabPanel("Histogram",
                                           plotOutput("histPlot"),
                                           tags$div(textOutput("histPlotCaption"), 
-                                                  align = "center")),
+                                                   align = "center")),
+                                 
+                                 tabPanel("Summary",
+                                          verbatimTextOutput("summaryView")),
                                  
                                  tabPanel("Raw Data",
                                           tags$br(),
