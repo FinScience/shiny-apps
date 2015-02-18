@@ -6,9 +6,9 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: http://apps.nierhoff.info/douglas        ##
+##       Live version of this app: http://apps.nierhoff.info/mietwagen        ##
 ##                                                                            ##
-##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas    ##
+##  Github: https://github.com/mhnierhoff/shiny-apps/tree/master/mietwagen    ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 

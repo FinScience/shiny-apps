@@ -6,9 +6,9 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##       Live version of this app: http://apps.nierhoff.info/rewetos          ##
+##         Live version of this app: http://apps.nierhoff.info/rewetos        ##
 ##                                                                            ##
-##  Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetos      ##
+##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetos    ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
@@ -441,9 +441,9 @@ shinyServer(function(input, output, session) {
         
         getDataset5 <- reactive({
                 switch(input$tabFive,
-                       "REWE" = tosa[,2],
-                       "toom" = tosa[,3],
-                       "BIPA" = tosa[,4])
+                       "REWE" = tos[,2],
+                       "toom" = tos[,3],
+                       "BIPA" = tos[,4])
                 
         })
         

@@ -304,6 +304,7 @@ output$forecastPlot <- renderPlot({
 ## NAVTAB 3 - Breakout Detection
         
 ## Getting data
+
 getDataset3 <- reactive({
         switch(input$tabThree,
                "billiger-mietwagen" = tosa[,2],
@@ -384,6 +385,7 @@ getDataset3 <- reactive({
 ## NAVTAB 4 - Decomposition
 
 ## Getting data
+
 getDataset4 <- reactive({
         switch(input$tabFour,
                "billiger-mietwagen" = tosa[,2],
