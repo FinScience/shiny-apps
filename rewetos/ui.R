@@ -30,7 +30,7 @@ suppressPackageStartupMessages(c(
 
 shinyUI(navbarPage("Time on Site Analysis", 
                    
-                   theme = shinytheme("flatly"),
+                   theme = "flatly.css",
                    
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
                    
@@ -38,7 +38,7 @@ shinyUI(navbarPage("Time on Site Analysis",
 
 tabPanel("Overview",
          
-         tags$head(includeScript("./js/ga-rewetos.js")),
+         tags$head(includeScript("./www/ga-rewetos.js")),
          
          sidebarLayout(
                  

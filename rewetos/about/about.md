@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-02-18 23:59:34 CET"
+## [1] "2015-02-19 00:08:47 CET"
 ```
 
 ***
@@ -234,7 +234,7 @@ devtools::session_info()
 ```
 
 
-[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/meinestadt  "Github Repo"
+[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetos  "Github Repo"
 
 [2]: http://www.rewe.de "Rewe Website"
 
