@@ -1,23 +1,29 @@
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 ##                                                                            ##
-##                   Forecasting Models for Website Traffic                   ##
+##                            Time on Site Analysis                           ##
 ##                                                                            ##            
 ##                    App & Code by Maximilian H. Nierhoff                    ##
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##                     http://apps.nierhoff.info/rewetos                      ##
+##         Live version of this app: http://apps.nierhoff.info/rewetos        ##
+##                                                                            ##
+##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetos    ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
-
+library(zoo)
+library(timeDate)
 library(forecast)
 library(lubridate)
 
-aToS <- read.csv("./dataset/ToS.csv", 
-                    header = TRUE,
-                    sep=";") 
+dat <- read.csv("./data/tos.csv", 
+                header = TRUE,
+                sep=";",
+                encoding = "UTF-8")
 
-alexaTimeonSite <- ts(aToS, start=c(2014, yday("2014-07-01")), frequency=365.3)
+tos <- na.omit(dat)
 
-write.csv(alexaTimeonSite, "data.csv")
+tosa <- ts(tos, start=c(2014, yday("2014-07-01")), frequency=365.3)
+
+write.csv(tosa, "./data/data.csv")

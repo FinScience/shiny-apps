@@ -1,145 +1,301 @@
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 ##                                                                            ##
-##                   Forecasting Models for Website Traffic                   ##
+##                            Time on Site Analysis                           ##
 ##                                                                            ##            
 ##                    App & Code by Maximilian H. Nierhoff                    ##
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##                     http://apps.nierhoff.info/rewetos                      ##
+##         Live version of this app: http://apps.nierhoff.info/douglas        ##
+##                                                                            ##
+##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/douglas    ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
+suppressPackageStartupMessages(c(
+        library(shiny),
+        library(shinyIncubator),
+        library(shinythemes),
+        library(lubridate),
+        library(zoo),
+        library(timeDate),
+        library(forecast),
+        library(knitr),
+        library(reshape),
+        library(DT),
+        library(RColorBrewer),
+        library(googleVis),
+        library(BreakoutDetection),
+        library(rmarkdown)))
 
-library(shiny)
-library(shinyIncubator)
-library(zoo)
-library(timeDate)
-library(datasets)
-library(forecast)
-library(knitr)
-library(rmarkdown)
+shinyUI(navbarPage("Time on Site Analysis", 
+                   
+                   theme = shinytheme("flatly"),
+                   
+############################### ~~~~~~~~1~~~~~~~~ ##############################                   
+                   
+## NAVTAB 1 - EDA
 
-# Define UI 
-shinyUI(fluidPage(
-        
-        tags$head(includeScript("ga-rewetos.js")),
-        # Application title
-        titlePanel("Time on Site Forecasting"),
-        
-        sidebarLayout(
-
-############################### ~~~~~~~~~~~~~~~~~ ##############################
-
-## Sidebar with controls to select the dataset and forecast ahead duration
-        
-        sidebarPanel(
-                
-                wellPanel(
-                tags$div(radioButtons(inputId = "page", 
-                        label = "Select a website:",
-                        choices= c("rewe.de", "toom-baumarkt.de","bipa.at"), 
-                        selected = "rewe.de"),
-                        align = "left")
-                ),
-                
-                wellPanel(
-                tags$div(selectInput(inputId = "model",
-                         label = "Select a forecasting model:",
-                         choices = c("ARIMA", "ETS", "TBATS", "StructTS", 
-                                     "Holt-Winters", "Theta", "Cubic Spline", 
-                                     "Random Walk", "Naive", "Mean"),
-                         selected = "ARIMA"),
-                         align = "left")
-                ),
-                
-                wellPanel(
-                tags$div(numericInput("ahead", "Days to forecast ahead:", 30),
-                         align = "left")   
-                ),
-                
-############################### ~~~~~~~~~~~~~~~~~ ##############################                
-
-## Option to download the Forecasting model plot & both decomposition plots
-                
-                
-                p("By clicking on the button a plot of the selected 
-                  forecasting model and both decomposition plots can 
-                  be downloaded."),
-                wellPanel(
-                        tags$div(downloadButton("downloadPlot", 
-                                                "Download Model Plot"),
-                                 align = "center")
-                ),
-                width = 3),
-
-
-############################### ~~~~~~~~~~~~~~~~~ ##############################        
-
-## Show Forecasting Plots
-
-mainPanel(
-        
-        tabsetPanel(
-                tabPanel("Model Plot", 
-                         plotOutput("fmplot"),
-                         tags$strong(textOutput("caption1"), 
-                                     align = "center"),
-                         tags$div("Historical Data: Alexa.com | Metric: 
-                                  Time on Site", align="center",
-                                  br(),
-                                  "Forecast based on data from 
-                                  27.06.2014 - 04.01.2015")),
-                
-                tabPanel("Forecasting Data",
-                         tags$div(textOutput("caption2"), 
-                                  align = "left"),
+tabPanel("Overview",
+         
+         tags$head(includeScript("./js/ga-rewetos.js")),
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         
+                         tags$h4("Exploratory Data Analysis"),
                          tags$br(),
-                         verbatimTextOutput("fmtable")),
-                
-                tabPanel("Decomposition Plots",
-                         tags$div(strong("STL Decomposition"), 
-                                  align ="center"),
-                         plotOutput("STLdcomp"),
-                         textOutput("caption3"),
-                         tags$hr(),
-                         plotOutput("Ndcomp"),
-                         (textOutput("caption4")),
-                         tags$hr()),
-                
-                tabPanel("About", includeMarkdown("expl.md"))
+                         radioButtons(inputId = "tabOne",
+                                      label = "Select a website:",
+                                      choices = c("REWE", 
+                                                  "toom", 
+                                                  "BIPA"),
+                                      selected = "REWE"),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         tabsetPanel(
+                                 tabPanel("Line Chart", 
+                                          plotOutput("linePlot"),
+                                          tags$hr(),
+                                          plotOutput("clinePlot")),
+                                 
+                                 tabPanel("Boxplot",
+                                          plotOutput("boxPlot"),
+                                          tags$div(textOutput("boxPlotCaption"), 
+                                                   align = "center"),
+                                          tags$hr(),
+                                          plotOutput("cboxPlot")),
+                                 
+                                 tabPanel("Histogram",
+                                          plotOutput("histPlot"),
+                                          tags$div(textOutput("histPlotCaption"), 
+                                                   align = "center")),
+                                 
+                                 tabPanel("Summary",
+                                          verbatimTextOutput("summaryView")),
+                                 
+                                 tabPanel("Raw Data",
+                                          tags$br(),
+                                          dataTableOutput("dataTable"))
+                                 
                          ),
-        
-        tags$hr(),
-        tags$span(style="color:grey", 
-                  tags$footer(("© 2015 - "), 
-                              tags$a(
-                                      href="http://nierhoff.info",
-                                      target="_blank",
-                                      "Maximilian H. Nierhoff."), 
-                              tags$br(),
-                              ("Built with"), tags$a(
-                                      href="http://cran.r-project.org",
-                                      target="_blank",
-                                      "R,"),
-                              tags$a(
-                                      href="http://shiny.rstudio.com",
-                                      target="_blank",
-                                      "Shiny"),
-                              ("&"), tags$a(
-                                      href="http://www.rstudio.com/products/shiny/shiny-server",
-                                      target="_blank",
-                                      "Shiny Server."),
-                              ("Hosted on"), tags$a(
-                                      href="https://www.digitalocean.com/?refcode=f34ade566630",
-                                      target="_blank",
-                                      "DigitalOcean."),
-                              
-                              align = "center")),
-        
-        tags$br(),
-        
-        width = 6)
-        )
+                         width = 6)
+         )
+),
+                   
+############################### ~~~~~~~~2~~~~~~~~ ##############################
+                   
+## NAVTAB 2 - Forecasting
+                   
+tabPanel("Forecasting",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tabTwo",
+                                      label = "Select a website:",
+                                      choices = c("REWE", 
+                                                  "toom", 
+                                                  "BIPA"),
+                                      selected = "REWE"),
+                         
+                         tags$hr(),
+                         
+                         selectInput(inputId = "model",
+                                     label = "Select a Forecasting model:",
+                                     choices = c("ARIMA", "ETS", "TBATS", 
+                                                 "StructTS", "Holt-Winters", 
+                                                 "Theta", "Cubic Spline",
+                                                 "Random Walk", "Naive",
+                                                 "Mean"),
+                                     selected = "ARIMA"),
+                         
+                         tags$hr(),
+                         
+                         numericInput("ahead", "Days to forecast ahead:", 30),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         plotOutput("forecastPlot"),
+                         tags$strong(textOutput("forecastCaption"), 
+                                     align = "center"),
+                         
+                         width = 6)
+                 
+         )
+),
+                   
+                   
+############################### ~~~~~~~~3~~~~~~~~ ##############################                   
+                   
+## NAVTAB 3 - Breakout Detection
+                   
+tabPanel("Breakout Detection",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tabThree",
+                                      label = "Select a website:",
+                                      choices = c("REWE", 
+                                                  "toom", 
+                                                  "BIPA"),
+                                      selected = "REWE"),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         plotOutput("adPlot"),
+                         tags$div(textOutput("breakoutCaptionT"), 
+                                  align = "center"),
+                         tags$div(textOutput("breakoutCaptionV"), 
+                                  align = "center"),
+                         
+                         width = 6)
+         )
+),
+                   
+############################### ~~~~~~~~4~~~~~~~~ ##############################
+                   
+## NAVTAB 4 - Decomposition
+                   
+tabPanel("Decomposition",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tabFour",
+                                      label = "Select a website:",
+                                      choices = c("REWE", 
+                                                  "toom", 
+                                                  "BIPA"),
+                                      selected = "REWE"),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         
+                         tabsetPanel(
+                                 
+                                 tabPanel("Normal Timeseries Decomposition",
+                                          tags$br(),
+                                          plotOutput("Ndcomp"),
+                                          tags$div(textOutput("NTScaption"),
+                                                   align = "center")),
+                                 
+                                 tabPanel("STL Decomposition",
+                                          tags$br(),
+                                          tags$div(strong("STL Decomposition"), 
+                                                   align ="center"),
+                                          plotOutput("STLdcomp"),
+                                          tags$div(textOutput("STLcaption"),
+                                                   align = "center"))
+                                 
+                         ),
+                         
+                         width = 6)
+                 
+         )
+         
+),          
+                   
+############################### ~~~~~~~~5~~~~~~~~ ##############################
+                   
+## NAVTAB 5 - Calendar View
+                   
+tabPanel("Calendar View",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tabFive",
+                                      label = "Select a website:",
+                                      choices = c("REWE", 
+                                                  "toom", 
+                                                  "BIPA"),
+                                      selected = "REWE"),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         htmlOutput("calendarPlot"),
+                         
+                         width = 6)
+                 
+         )
+         
+),
+                   
+############################### ~~~~~~~~A~~~~~~~~ ##############################
+                   
+## About
+                   
+tabPanel("About",
+         fluidRow(
+                 column(1,
+                        p("")),
+                 column(10,
+                        includeMarkdown("./about/about.md")),
+                 column(1,
+                        p(""))
+         )
+),
+                   
+############################### ~~~~~~~~F~~~~~~~~ ##############################
+                   
+## Footer
 
-))
+tags$hr(),
+
+tags$span(style="color:darkslategrey", 
+          tags$div(textOutput("dataPeriodCaption"), 
+                   align = "center")
+),
+
+tags$span(style="color:darkslategrey", 
+          tags$div("Data source: Alexa.com | Metric: Alexa Time on Site", 
+                   align="center")
+),
+
+tags$br(),
+
+tags$span(style="color:grey", 
+          tags$footer(("© 2015 - "), 
+                      tags$a(
+                              href="http://nierhoff.info",
+                              target="_blank",
+                              "Maximilian H. Nierhoff."), 
+                      tags$br(),
+                      ("Built with"), tags$a(
+                              href="http://www.r-project.org/",
+                              target="_blank",
+                              "R,"),
+                      tags$a(
+                              href="http://shiny.rstudio.com",
+                              target="_blank",
+                              "Shiny"),
+                      ("&"), tags$a(
+                              href="http://www.rstudio.com/products/shiny/shiny-server",
+                              target="_blank",
+                              "Shiny Server."),
+                      ("Hosting on"), tags$a(
+                              href="https://www.digitalocean.com/?refcode=f34ade566630",
+                              target="_blank",
+                              "DigitalOcean."),
+                      
+                      align = "center"),
+          
+          tags$br()
+          
+)
+)
+)
