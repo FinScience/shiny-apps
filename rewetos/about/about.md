@@ -7,8 +7,14 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-01-10 14:17:55 CET"
+## [1] "2015-02-18 23:59:34 CET"
 ```
+
+***
+
+### Code
+
+The code of this application can be found in this [Github repository.][1]
 
 ***
 
@@ -16,16 +22,42 @@ Sys.time()
 
 The used data set was derived from an own account and own comparisons by the use of Alexa.com Competitive Intelligence metrics.
 
-The presented forecasts relate to the Alexa Time on Site metric.
+The presented plots, forecasts and calculations relate to the Alexa Time on Site metric.
+
+Related websites:
+
+* [rewe.de][2]
+
+* [toom-baumarkt.de][3]
+
+* [bipa.at][4]
 
 ***
 
-### Forecasting Models
+### Notices
+
+This application is primarily a demo to show what is possible. 
+
+In case of any questions related to this application, feel free to write [me a mail.][5]
+
+***
+
+### First Tab - Overview
+
+In simple but appropriate words:
+
+> In statistics, exploratory data analysis (EDA) is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. [(wikipedia.org)][6]
+
+The line chart gives an first impression of the selected data set, while the boxplot shows the median, quartiles, outliers and also gives a first view on the respective distribution. Finally the histogram enables a clear presentation of the distribution of the selected data set. At least the raw data tab makes it possible to check every single value of the data set.
+
+***
+
+### Second Tab - Forecasting Models
 
 #### Auto.Arima
 Fit best ARIMA model to univariate time series
 
-**Description**
+**Description:**
 
 Returns best ARIMA model according to either AIC, AICc or BIC value. The function conducts a search over possible model within the order constraints provided.
 
@@ -34,7 +66,7 @@ Returns best ARIMA model according to either AIC, AICc or BIC value. The functio
 #### ETS
 Exponential smoothing state space model
 
-**Description**
+**Description:**
 
 Returns ets model applied to y.
 
@@ -43,7 +75,7 @@ Returns ets model applied to y.
 #### TBATS
 TBATS model (Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components)
 
-**Description**
+**Description:**
 
 Fits a TBATS model applied to y, as described in De Livera, Hyndman & Snyder (2011). Parallel processing is used by default to speed up the computations.
 
@@ -52,7 +84,7 @@ Fits a TBATS model applied to y, as described in De Livera, Hyndman & Snyder (20
 #### StructTS
 Forecasting using Structural Time Series models
 
-**Description**
+**Description:**
 
 
 Returns forecasts and other information for univariate structural time series models.
@@ -62,7 +94,7 @@ Returns forecasts and other information for univariate structural time series mo
 #### Holt-Winters
 Forecasting using Holt-Winters objects
 
-**Description**
+**Description:**
 
 Returns forecasts and other information for univariate Holt-Winters time series models.
 
@@ -71,7 +103,7 @@ Returns forecasts and other information for univariate Holt-Winters time series 
 #### Theta
 Theta method forecast
 
-**Description**
+**Description:**
 
 Returns forecasts and prediction intervals for a theta method forecast.
 
@@ -80,7 +112,7 @@ Returns forecasts and prediction intervals for a theta method forecast.
 #### Random Walk
 Random Walk Forecast
 
-**Description**
+**Description:**
 
 Returns forecasts and prediction intervals for a random walk with drift model applied to x.
 
@@ -89,7 +121,7 @@ Returns forecasts and prediction intervals for a random walk with drift model ap
 #### Naive
 Naive forecasts
 
-**Description**
+**Description:**
 
 ```naive()``` returns forecasts and prediction intervals for an ARIMA(0,1,0) random walk model ap- plied to x. ```snaive()``` returns forecasts and prediction intervals from an ARIMA(0,0,0)(0,1,0)m model where m is the seasonal period.
 
@@ -98,7 +130,7 @@ Naive forecasts
 #### Cubic Spline
 Cubic Spline Forecast
 
-**Description**
+**Description:**
 
 Returns local linear forecasts and prediction intervals using cubic smoothing splines.
 
@@ -107,17 +139,37 @@ Returns local linear forecasts and prediction intervals using cubic smoothing sp
 #### Mean
 Mean Forecast
 
-**Description**
+**Description:**
 
 Returns forecasts and prediction intervals for an iid model applied to x. 
 
 ***
 
-### Notices
+#### References for the Forecast R package
 
-This application is primarily a demo to show what is possible. In favor of the ease of use of this app, the individual models may not be maximally accurate.
+Hyndman RJ (2015). forecast: Forecasting functions for time series and linear models. R package version 5.8, http://github.com/robjhyndman/forecast.
 
-In case of any questions related to this application, feel free to write [me a mail.][1]
+Hyndman RJ and Khandakar Y (2008). “Automatic time series forecasting: the forecast package for R.” Journal of Statistical Software, 26(3), pp. 1–22. http://ideas.repec.org/a/jss/jstsof/27i03.html.
+
+***
+
+### Third Tab - Breakout Detection
+
+The Breakout Detection is being solved through the Twitter R package with the respective name. You can check the code and more information in their [repo on Github.][7]
+
+> The underlying algorithm – referred to as E-Divisive with Medians (EDM) – employs energy statistics to detect divergence in mean. Note that EDM can also be used detect change in distribution in a given time series. EDM uses robust statistical metrics, viz., median, and estimates the statistical significance of a breakout through a permutation test.
+
+***
+
+### Fourth Tab - Decomposition
+
+#### Normal Timeseries Decomposition
+
+This decomposition formula splits the data into seasonal, trend and irregular components using moving averages. The additive model uses the following formula: Y[t] = T[t] + S[t] + e[t].
+
+#### STL Decomposition
+
+> STL is a very versatile and robust method for decomposing time series. STL is an acronym for “Seasonal and Trend decomposition using Loess”, while Loess is a method for estimating nonlinear relationships. The STL method was developed by Cleveland et al. (1990) [(Source)][8]
 
 ***
 
@@ -125,15 +177,19 @@ In case of any questions related to this application, feel free to write [me a m
 
 
 ```r
-library(shiny)
-library(shinyIncubator)
 library(zoo)
 library(timeDate)
-library(datasets)
 library(forecast)
-library(knitr)
-library(rmarkdown)
 library(lubridate)
+library(shiny)
+library(shinyIncubator)
+library(shinythemes)
+library(knitr)
+library(reshape)
+library(DT)
+library(RColorBrewer)
+library(BreakoutDetection)
+library(rmarkdown)
 ```
 
 ***
@@ -142,41 +198,56 @@ library(lubridate)
 
 
 ```r
-Sys.time()
+devtools::session_info()
 ```
 
 ```
-## [1] "2015-01-10 14:17:55 CET"
-```
-
-```r
-sessionInfo()
+## Session info --------------------------------------------------------------
 ```
 
 ```
-## R version 3.1.2 (2014-10-31)
-## Platform: x86_64-apple-darwin13.4.0 (64-bit)
-## 
-## locale:
-## [1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## loaded via a namespace (and not attached):
-## [1] digest_0.6.8    evaluate_0.5.5  formatR_1.0     htmltools_0.2.6
-## [5] knitr_1.8       rmarkdown_0.4.2 stringr_0.6.2   tools_3.1.2    
-## [9] yaml_2.1.13
+##  setting  value                       
+##  version  R version 3.1.2 (2014-10-31)
+##  system   x86_64, darwin13.4.0        
+##  ui       X11                         
+##  language (EN)                        
+##  collate  de_DE.UTF-8                 
+##  tz       Europe/Berlin
 ```
 
-***
+```
+## Packages ------------------------------------------------------------------
+```
 
-### References
+```
+##  package    * version date       source        
+##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.2)
+##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.2)
+##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.0)
+##  formatR    * 1.0     2014-08-25 CRAN (R 3.1.1)
+##  htmltools  * 0.2.6   2014-09-08 CRAN (R 3.1.1)
+##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.2)
+##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.2)
+##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.2)
+##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.2)
+##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.0)
+```
 
-Hyndman RJ (2015). forecast: Forecasting functions for time series and linear models. R package version 5.8, http://github.com/robjhyndman/forecast.
 
-Hyndman RJ and Khandakar Y (2008). “Automatic time series forecasting: the forecast package for R.” Journal of Statistical Software, 26(3), pp. 1–22. http://ideas.repec.org/a/jss/jstsof/27i03.html.
+[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/meinestadt  "Github Repo"
 
-[1]: http://nierhoff.info/#contact "Contact"
+[2]: http://www.rewe.de "Rewe Website"
+
+[3]: http://www.toom-baumarkt.de "Toom Baumarkt Website"
+
+[4]: http://www.bipa.at "Bipa Website"
+
+[5]: http://nierhoff.info/#contact "Contact"
+
+[6]: http://en.wikipedia.org/wiki/Exploratory_data_analysis "EDA on wikipeda.org"
+
+[7]: https://github.com/twitter/BreakoutDetection "Twitter Breakout Detection R Package"
+
+[8]: https://www.otexts.org/fpp/6/5 "STL Decomposition"
 
 ***
