@@ -6,32 +6,34 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##                    http://apps.nierhoff.info/rewetm                        ##
+##         Live version of this app: https://apps.nierhoff.info/rewetm        ##
 ##                                                                            ##
-################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+##  Github Repo: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetm  ##
+##                                                                            ##
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################  
 
 library(devtools)
 library(rjson)
 library(bit64)
 library(httr)
 library(twitteR)
+library(plyr)
 
 source("twitterApp.R")
 
 setup_twitter_oauth(api_key,api_secret,access_token,access_token_secret)
 
-REWE_tweets <- userTimeline("REWE_Supermarkt", n = 3200)
-
+## Get n tweets of the accounts
+REWE_tweets <- userTimeline("REWE_Supermarkt", n = 750)
 toom_tweets <- userTimeline("toomteam", n = 3200)
+BIPA_tweets <- userTimeline("BIPA", n = 750)
 
-BIPA_tweets <- userTimeline("BIPA", n = 3200)
+## Change list structure into data frame
+REWE.df <- twListToDF(REWE_tweets)
+toom.df <- twListToDF(toom_tweets)
+BIPA.df <- twListToDF(BIPA_tweets)
 
-save(REWE_tweets, file = "./dataset/REWE_tweets.rda")
-
-save(toom_tweets, file = "./dataset/toom_tweets.rda")
-
-save(BIPA_tweets, file = "./dataset/BIPA_tweets.rda")
-
-
-
-
+## Save text column DF as .csv file
+write.csv(REWE.df[,1], file = "./data/REWE.csv")
+write.csv(toom.df[,1], file = "./data/toom.csv")
+write.csv(BIPA.df[,1], file = "./data/BIPA.csv")

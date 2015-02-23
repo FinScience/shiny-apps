@@ -6,7 +6,9 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##                    http://apps.nierhoff.info/rewetm                        ##
+##         Live version of this app: https://nierhoff.shinyapps.io/TTMA       ##
+##                                                                            ##
+##         Github Repo for this app: https://github.com/mhnierhoff/TTMA       ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
@@ -15,7 +17,10 @@ suppressPackageStartupMessages(c(
         library(twitteR),
         library(NLP),
         library(tm),
+        library(shinyIncubator),
+        library(shinythemes),
         library(grid),
+        library(pvclust),
         library(Rgraphviz),
         library(qdapTools),
         library(qdapRegex),
@@ -25,166 +30,222 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(plotly),
-        library(qdap),
-        library(googleVis)))
+        library(ape),
+        library(BH),
+        library(qdap)))
 
-shinyUI(navbarPage("Twitter Text Mining",
+
+shinyUI(navbarPage("Twitter Text Mining", 
+                 
+                   theme = shinytheme("flatly"),
                    
-                   #tags$head(includeScript("ga-rewetm.js")),
-
 
 
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
 
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
 
-        tabPanel("Words",
-        
-                 sidebarLayout(
-                                  
-                         sidebarPanel(
-                                 radioButtons(inputId = "tdm",
-                                              label = "Select Twitter account:",
-                                              choices = c("REWE", "BIPA", "Toom"),
-                                              selected = "REWE"),
-                                 
-                                 tags$hr(),
-                                 
-                                 sliderInput("minfreqWord", 
-                                             label = "Minimum frequency of words:",
-                                             min = 5, max = 25, value = 10),
-                                 width = 3),
+tabPanel("Words",
+         
+         tags$head(includeScript("./js/ga-rewetm.js")),
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tdmwc",
+                                      label = "Select Twitter account:",
+                                      choices = accounts),
                          
-                         mainPanel(
+                         tags$hr(),
+                         
+                         sliderInput("minfreqWord", 
+                                     label = "Minimum frequency 
+                                             of plotted words:",
+                                     min = 5, max = 100, value = 35),
+                         
+                         tags$hr(),
+                         
+                         sliderInput("maxfreqWord", 
+                                     "Maximum number 
+                                             of plotted words:", 
+                                     min = 1,  max = 250,  value = 100),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         tabsetPanel(
                                  
-                                 tabsetPanel(
-                                         
-                                         tabPanel("Wordcloud",
-                                                  
-                                                  plotOutput("wordPlot")),
-                                         
-                                         
-                                         tabPanel("Word-Letter Ratio",
-                                                  
-                                                  plotOutput("ratioPlot"))
-                                )
+                                 tabPanel("Wordcloud",
+                                          
+                                          plotOutput("wordPlot")),
                                  
-                        )
-                )
-        ),
+                                 tabPanel("Word-Letter Ratio",
+                                          
+                                          plotOutput("ratioPlot"))
+                         ),
+                         
+                         width = 6)
+         )
+),
 
 ############################### ~~~~~~~~2~~~~~~~~ ##############################
 
-## NAVTAB 2 - Associaltion Plot
 
-        tabPanel("Association Plot",
+## NAVTAB 2 - Cluster Dendrogram
+
+tabPanel("Cluster Dendrogram",
+         
+         sidebarLayout(
                  
                  sidebarPanel(
-                         
-                         radioButtons(inputId = "tdm",
+                         radioButtons(inputId = "tdmcd",
                                       label = "Select Twitter account:",
-                                      choices = c("REWE", "BIPA", "Toom"),
-                                      selected = "REWE"),
+                                      choices = accounts),
+                         
+                         tags$hr(),
+                         
+                         sliderInput("clusterNumber", 
+                                     label = "Number of terms cluster:",
+                                     min = 1, max = 15, value = 5),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         plotOutput("clusterPlot"),
+                         
+                         width = 6)
+                 
+         )
+),
+
+
+############################### ~~~~~~~~3~~~~~~~~ ##############################
+
+## NAVTAB 3 - Association Plot
+
+tabPanel("Association Plot",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tdmap",
+                                      label = "Select Twitter account:",
+                                      choices = accounts),
                          
                          tags$hr(),
                          
                          sliderInput("lowfreqAssoc", 
-                                     label = "Minimum frequency of words:",
-                                     min = 10, max = 50, value = 25),
+                                     label = "Number of frequent terms:",
+                                     min = 50, max = 250, value = 105),
+                         
                          width = 3),
                  
                  mainPanel(
-                                 
-                         plotOutput("assocPlot")
                          
-                 )
-        ),
- 
-############################### ~~~~~~~~3~~~~~~~~ ##############################
-
-## NAVTAB 3 - Cluster Dendrogram
-        
-        tabPanel("Cluster Dendrogram",
-                 
-                 sidebarLayout(
+                         plotOutput("assocPlot"),
                          
-                         sidebarPanel(
-                                 
-                                 sliderInput("n", "Number of points", 10, 200,
-                                             value = 50, step = 10),
-                                 width = 3),
-                         
-                         mainPanel(
-                         
-                                plotOutput("clusterPlot")
-                         )
-                         
-                 )
-        ),
+                         width = 6)
+         )
+),
 
 ############################### ~~~~~~~~4~~~~~~~~ ##############################
 
 ## NAVTAB 4 - Term Frequency Plot & Table
 
-        tabPanel("Term Frequency",
-                
-                sidebarLayout(
-                        
-                        sidebarPanel(
-                        
-                                checkboxInput(inputId = "pageable", 
-                                      label = "Pageable"),
-                        
-                        
-                                conditionalPanel("input.pageable==true",
-                                         numericInput(
-                                                 inputId = "pagesize",
-                                                 label = "Terms per page",
-                                                 10)),    
-                
-                                width = 3),
-                
-                
-                        mainPanel(
-                        
-                    
-                                tabsetPanel(
-                            
-                            
-                                        tabPanel("Chart",
-                                     
-                                     
-                                                 plotOutput("freqPlot")),
-                                
-                            
-                            
-                                        tabPanel("Table",
-                        
-                                     
-                                                 htmlOutput("mgvisTable"))
-                                
-                                )
-                        
-                        )
-                
-                )
-        
-        ),
+tabPanel("Term Frequency",
+         
+         sidebarLayout(
+                 
+                 sidebarPanel(
+                         radioButtons(inputId = "tdmtf",
+                                      label = "Select Twitter account:",
+                                      choices = accounts),
+                         
+                         tags$hr(),
+                         
+                         sliderInput("freqNumber", 
+                                     label = "Minimum frequency of terms:",
+                                     min = 25, max = 250, value = 75),
+                         
+                         width = 3),
+                 
+                 mainPanel(
+                         
+                         
+                         tabsetPanel(
+                                 
+                                 
+                                 tabPanel("Chart",
+                                          
+                                          
+                                          plotOutput("freqPlot")),
+                                 
+                                 
+                                 
+                                 tabPanel("Table",
+                                          
+                                          
+                                          dataTableOutput("freqTable"))
+                                 
+                         ),
+                         
+                         width = 6)
+                 
+         )
+         
+),
 
 ############################### ~~~~~~~~A~~~~~~~~ ##############################
 
 ## About
-       
-        tabPanel("About",
-                fluidRow(
-                        column(1,
-                               p("")),
-                        column(10,
-                               includeMarkdown("expl.md")),
-                        column(1,
-                               p(""))
-                        )
-                )
-        )
+
+tabPanel("About",
+         fluidRow(
+                 column(1,
+                        p("")),
+                 column(10,
+                        includeMarkdown("./expl.md")),
+                 column(1,
+                        p(""))
+         )
+),
+
+############################### ~~~~~~~~F~~~~~~~~ ##############################
+
+## Footer
+
+tags$hr(),
+
+tags$span(style="color:grey", 
+          tags$footer(("© 2015 - "), 
+                      tags$a(
+                              href="http://nierhoff.info",
+                              target="_blank",
+                              "Maximilian H. Nierhoff."), 
+                      tags$br(),
+                      ("Built with"), tags$a(
+                              href="http://www.r-project.org/",
+                              target="_blank",
+                              "R,"),
+                      tags$a(
+                              href="http://shiny.rstudio.com",
+                              target="_blank",
+                              "Shiny"),
+                      ("&"), tags$a(
+                              href="http://www.rstudio.com/products/shiny/shiny-server",
+                              target="_blank",
+                              "Shiny Server."),
+                      ("Hosted on"), tags$a(
+                              href="https://www.digitalocean.com/?refcode=f34ade566630",
+                              target="_blank",
+                              "DigitalOcean."),
+                      
+                      align = "center"),
+          
+          tags$br()
+          
+)
+)
 )

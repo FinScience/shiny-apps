@@ -2,9 +2,9 @@
 output:
   html_document:
     bibliography: bibtex
-    highlight: tango
+    highlight: null
     keep_md: yes
-    theme: spacelab
+    theme: null
 ---
 
 ### Last Update
@@ -15,9 +15,34 @@ Sys.time()
 
 ***
 
+### Code
+
+The code of this application can be found in this [Github repository][1].
+
 ### Data Set
 
+```{r, echo=FALSE}
+a <- read.csv(file = "./data/REWE.csv", sep=",", header = TRUE)
+r <- read.csv(file = "./data/toom.csv", sep=",", header = TRUE)
+p <- read.csv(file = "./data/BIPA.csv", sep=",", header = TRUE)
+```
+
+
 The data sets have been directly retrived with an own Twitter application.
+
+Related Twitter Accounts:
+
+* [REWE][2]
+
+        Number of analyzed tweets after cleaning: `r length(a[,1])`
+
+* [toom][3] 
+
+        Number of analyzed tweets after cleaning: `r length(r[,1])`
+
+* [BIPA][4] 
+        
+        Number of analyzed tweets after cleaning: `r length(p[,1])`
 
 ***
 
@@ -25,35 +50,45 @@ The data sets have been directly retrived with an own Twitter application.
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][1]
+In case of any questions related to this application, feel free to write [me a mail.][5]
 
 ***
 
 ### Used R Packages
 
 ```{r, eval=FALSE}
+library(graph)
+library(twitteR)
+library(NLP)
+library(tm)
+library(shinyIncubator)
+library(grid)
+library(pvclust)
+library(Rgraphviz)
+library(qdapTools)
+library(qdapRegex)
+library(magrittr)
+library(wordcloud)
+library(RColorBrewer)
+library(ggplot2)
+library(RCurl)
+library(bitops)
+library(shinyapps)
+library(BH)
+library(qdap)
+library(SnowballC)
+library(slam)
+library(RWeka)
+library(rJava) 
+library(RWekajars)
+library(memoise)
 library(devtools)
 library(rjson)
 library(bit64)
 library(httr)
-library(twitteR)
-library(NLP)
-library(tm)
-library(SnowballC)
-library(Snowball)
-library(slam)
-library(RWeka)
-library(rJava) 
-library(RWekajars) 
-library(graph)
-library(grid)
-library(Rgraphviz)
-library(ggplot2)
-library(wordcloud)
-library(RColorBrewer)
-library(qdap)
-library(magrittr)
-library(googleVis)
+library(plyr)
+library(ape)
+library(shinythemes)
 ```
 
 ***
@@ -61,15 +96,19 @@ library(googleVis)
 ### Last Session Info
 
 ```{r}
-sessionInfo()
+devtools::session_info()
 ```
 
-***
-
-### References
 
 
+[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetm "Github Repo"
 
-[1]: http://nierhoff.info/#contact "Contact"
+[2]: https://twitter.com/rewe_supermarkt "REWE Twitter Account"
+
+[3]: https://twitter.com/toomteam "toom team Twitter Account"
+
+[4]: https://twitter.com/BIPA "BIPA Twitter Account"
+
+[5]: http://nierhoff.info/#contact "Contact"
 
 ***

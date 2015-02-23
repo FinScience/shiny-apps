@@ -6,16 +6,21 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##                    http://apps.nierhoff.info/rewetm                        ##
+##         Live version of this app: https://apps.nierhoff.info/rewetm        ##
 ##                                                                            ##
-################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
+##  Github Repo: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetm  ##
+##                                                                            ##
+################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################  
 
 suppressPackageStartupMessages(c(
         library(graph),
         library(twitteR),
         library(NLP),
         library(tm),
+        library(shinyIncubator),
+        library(shinythemes),
         library(grid),
+        library(pvclust),
         library(Rgraphviz),
         library(qdapTools),
         library(qdapRegex),
@@ -25,131 +30,244 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(plotly),
-        library(qdap),
-        library(googleVis)))
+        library(ape),
+        library(BH),
+        library(qdap)))
 
+source("globalCorpus.R")
 
 shinyServer(function(input, output, session) {
         
-        myOptions <- reactive({
-                list(
-                        page=ifelse(input$pageable==TRUE,'enable','disable'),
-                        pageSize=input$pagesize,
-                        width=550
-                )
-        })
-        
-        
-        ## Getting the data 
-        
-        getTdm <- reactive({
-                switch(input$tdm,
-                       "REWE" = tdmREWE,
-                       "BIPA" = tdmBIPA,
-                       "Toom" = tdmtoom)
-        })
         
 ############################### ~~~~~~~~1~~~~~~~~ ##############################
-
+        
 ## NAVTAB 1 - Wordcloud and Word-Letter Ratio Plot
 
-        ## Tabset 1
-        output$wordPlot <- renderPlot({
-                
-                m <- as.matrix(getTdm())
-                # calculate the frequency of words and sort it by frequency 
-                word.freq <- sort(rowSums(m), decreasing = TRUE)
-                wordcloud(words = names(word.freq), 
-                          freq = word.freq, 
-                          min.freq = input$minfreqWord,
-                          random.order = FALSE, 
-                          colors=brewer.pal(6, "Dark2"))
-                
-        })
+getTdm <- reactive({
         
-        ## Tabset 2
-        output$ratioPlot <- renderPlot({
+        getTermMatrix(input$tdmwc)
         
-                words <- getTdm()  %>%
-                        as.matrix %>%
-                        colnames  %>%
-                        (function(x) x[nchar(x) < 20])
         
-                data.frame(nletters=nchar(words)) %>%
-                        ggplot(aes(x=nletters)) +
-                        geom_histogram(binwidth=1) +
-                        geom_vline(xintercept=mean(nchar(words)),
-                                   color="red", size=1, alpha=.5) +
-                        labs(x="Number of Letters", y="Number of Words")
-        
-        })
+})
 
+## Tabset 1
+
+wordPlotInput <- function() {
+        m <- as.matrix(getTdm())
+        word.freq <- sort(rowSums(m), decreasing = TRUE)
+        wordcloud(words = names(word.freq), 
+                  freq = word.freq, 
+                  min.freq = input$minfreqWord,
+                  max.words=input$maxfreqWord,
+                  random.order = FALSE,
+                  vfont=c("sans serif","bold"),
+                  colors=brewer.pal(7, "Dark2"))
+}
+
+output$wordPlot <- renderPlot({                        
+        
+        ##########    Adding a progress bar  ##########
+        
+        ## Create a Progress object
+        
+        progress <- shiny::Progress$new()
+        
+        on.exit(progress$close())
+        
+        progress$set(message = "Creating Plot", value = 0)
+        
+        n <- 10
+        
+        for (i in 1:n) {
+                # Each time through the loop, add another row of data. This is
+                # a stand-in for a long-running computation.
+                
+                # Increment the progress bar, and update the detail text.
+                progress$inc(1/n, detail = paste("Doing Part", i))
+                
+                
+                wordPlotInput()
+                
+                # Pause for 0.1 seconds to simulate a long computation.
+                Sys.sleep(0.1)
+        }
+})
+
+## Tabset 2
+
+ratioPlotInput <- function() {
+        
+        words <- getTdm()  %>%
+                as.matrix %>%
+                colnames  %>%
+                (function(x) x[nchar(x) < 20])
+        
+        data.frame(nletters = nchar(words)) %>%
+                ggplot(aes(x = nletters)) +
+                geom_histogram(binwidth = 1) +
+                geom_vline(xintercept = mean(nchar(words)),
+                           color = "red", size = 1, alpha = 0.5) +
+                labs(title = "Most Frequent Terms") +
+                labs(y = "Number of Words") + 
+                labs(x = "Number of Letters") +
+                theme_bw()
+        
+}
+
+output$ratioPlot <- renderPlot({
+        
+        ratioPlotInput()
+        
+})
+        
 ############################### ~~~~~~~~2~~~~~~~~ ##############################
         
-## NAVTAB 2 - Association Plot
+## NAVTAB 2 - Cluster Dendrogram
+
+getTdmcd <- reactive({
         
-        assocPlotInput <- function() {
+        getTermMatrix(input$tdmcd)
         
-        freq.terms <- findFreqTerms(getTdm(), lowfreq = input$lowfreqAssoc)
+})
+
+
+clusterPlotInput <- function() {
         
-        plot(getTdm(), term = freq.terms, 
+        tdm2 <- removeSparseTerms(getTdmcd(), sparse = 0.95)
+        m2 <- as.matrix(tdm2)
+        # Cluster terms
+        distMatrix <- dist(scale(m2))
+        fit <- hclust(distMatrix, method = "ward.D")
+        
+        plot(fit)
+        #plot(as.phylo(fit), cex = 0.9, label.offset = 1, type = "fan")
+        rect.hclust(fit, k = input$clusterNumber)
+}
+
+output$clusterPlot <- renderPlot({
+        
+        ##########    Adding a progress bar  ##########
+        
+        ## Create a Progress object
+        
+        progress <- shiny::Progress$new()
+        
+        on.exit(progress$close())
+        
+        progress$set(message = "Creating Plot", value = 0)
+        
+        n <- 10
+        
+        for (i in 1:n) {
+                # Each time through the loop, add another row of data. This is
+                # a stand-in for a long-running computation.
+                
+                # Increment the progress bar, and update the detail text.
+                progress$inc(1/n, detail = paste("Doing Part", i))
+                
+                clusterPlotInput()
+                
+                # Pause for 0.1 seconds to simulate a long computation.
+                Sys.sleep(0.1)
+        }
+        
+})
+        
+############################### ~~~~~~~~3~~~~~~~~ ##############################
+        
+## NAVTAB 3 - Association Plot
+
+getTdmap <- reactive({
+        
+        getTermMatrix(input$tdmap)
+        
+})
+
+assocPlotInput <- function() {
+        
+        freq.terms <- findFreqTerms(getTdmap(), lowfreq = input$lowfreqAssoc)
+        
+        plot(getTdmap(), term = freq.terms, 
              corThreshold = 0.08, 
              weighting = TRUE)
-        }
+}
 
-        output$assocPlot <- renderPlot({
+output$assocPlot <- renderPlot({
+        
+        ##########    Adding a progress bar  ##########
+        
+        ## Create a Progress object
+        
+        progress <- shiny::Progress$new()
+        
+        on.exit(progress$close())
+        
+        progress$set(message = "Creating Plot", value = 0)
+        
+        n <- 10
+        
+        for (i in 1:n) {
+                # Each time through the loop, add another row of data. This is
+                # a stand-in for a long-running computation.
+                
+                # Increment the progress bar, and update the detail text.
+                progress$inc(1/n, detail = paste("Doing Part", i))
                 
                 assocPlotInput()
-        })
-
-############################### ~~~~~~~~3~~~~~~~~ ##############################
-
-## NAVTAB 3 - Cluster Dendrogram
-
-        output$clusterPlot <- renderPlot({
-        
-                tdmREWE2 <- removeSparseTerms(tdmREWE, sparse = 0.95) 
-                m2 <- as.matrix(tdmREWE2)
-                # Cluster terms
-                distMatrix <- dist(scale(m2))
-                fit <- hclust(distMatrix, method = "ward.D")
-        
-                plot(fit)
-                rect.hclust(fit, k = 4)
-        
-        })
+                
+                # Pause for 0.1 seconds to simulate a long computation.
+                Sys.sleep(0.1)
+        }
+})
 
 ############################### ~~~~~~~~4~~~~~~~~ ##############################
-
+        
 ## NAVTAB 4 - Term Frequency Plot & Table
 
-        ## Tabset Tab 1
-        output$freqPlot <- renderPlot({
-                
-                freq.terms <- findFreqTerms(tdmREWE, lowfreq = 35)
-                term.freq <- rowSums(as.matrix(tdmREWE))
-                term.freq <- subset(term.freq, term.freq >= 35)
+getTdmtf <- reactive({
         
-                df <- data.frame(term = names(term.freq), freq = term.freq)
+        getTermMatrix(input$tdmtf)
         
-                df <- transform(df, term = reorder(term, freq))
+})
+
+## Tabset Tab 1
+
+freqPlotInput <- function() {
         
-                freqPlot <- ggplot(df, aes(x = term, y = freq, fill = freq)) 
-        
-                freqPlot + geom_bar(width = 0.7, stat = "identity") +
+        freq.terms <- findFreqTerms(getTdmtf(), lowfreq = input$freqNumber)
+        term.freq <- rowSums(as.matrix(getTdmtf()))
+        term.freq <- subset(term.freq, term.freq >= input$freqNumber)
+        freq.df <- data.frame(term = names(term.freq), freq = term.freq)
+        freq.df <- transform(freq.df, term = reorder(term, freq))
+        freqPlot <- ggplot(freq.df, aes(x = term, y = freq, fill = freq)) 
+        freqPlot + geom_bar(width = 0.7, stat = "identity") +
                 labs(title = "Most Frequent Terms") +
-                labs(y = "Terms") + 
-                labs(x = "Count") + 
+                labs(y = "Count") + 
+                labs(x = "Terms") + 
                 coord_flip() +
                 theme_bw()
-        })
+}
 
-        ## Tabset Tab 1
-        output$mgvisTable <- renderGvis({
-                gvisTable(df,options=myOptions())         
-        })
-
-
+output$freqPlot <- renderPlot({
         
+        freqPlotInput()
+        
+})
+
+## Tabset Tab 1
+
+freqTableInput <- function() {
+        
+        freq.terms <- findFreqTerms(getTdmtf(), lowfreq = input$freqNumber)
+        term.freq <- rowSums(as.matrix(getTdmtf()))
+        term.freq <- subset(term.freq, term.freq >= input$freqNumber)
+        freq.df <- data.frame(term = names(term.freq), freq = term.freq)
+        freq.df <- transform(freq.df, term = reorder(term, freq)) 
+}
+
+output$freqTable <- renderDataTable({
+        
+        freqTableInput()
+        
+})
 })
