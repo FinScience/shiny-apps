@@ -31,7 +31,8 @@ suppressPackageStartupMessages(c(
         library(RCurl),
         library(bitops),
         library(ape),
-        library(BH),
+        library(BH),        
+        library(rJava),
         library(qdap)))
 
 

@@ -32,6 +32,7 @@ suppressPackageStartupMessages(c(
         library(bitops),
         library(ape),
         library(BH),
+        library(rJava),
         library(qdap)))
 
 source("globalCorpus.R")

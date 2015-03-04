@@ -88,6 +88,7 @@ library(bit64)
 library(httr)
 library(plyr)
 library(ape)
+library(rJava)
 library(shinythemes)
 ```
 

@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-02-23 17:19:30 CET"
+## [1] "2015-03-03 00:52:55 CET"
 ```
 
 ***
@@ -27,15 +27,15 @@ Related Twitter Accounts:
 
 * [REWE][2]
 
-        Number of analyzed tweets after cleaning: 708
+        Number of analyzed tweets after cleaning: 699
 
 * [toom][3] 
 
-        Number of analyzed tweets after cleaning: 531
+        Number of analyzed tweets after cleaning: 527
 
 * [BIPA][4] 
         
-        Number of analyzed tweets after cleaning: 618
+        Number of analyzed tweets after cleaning: 621
 
 ***
 
@@ -82,6 +82,7 @@ library(bit64)
 library(httr)
 library(plyr)
 library(ape)
+library(rJava)
 library(shinythemes)
 ```
 
@@ -124,10 +125,11 @@ devtools::session_info()
 ##  formatR    * 1.0        2014-08-25 CRAN (R 3.1.1)                      
 ##  ggplot2    * 1.0.0      2014-05-21 CRAN (R 3.1.2)                      
 ##  gtable     * 0.1.2      2012-12-05 CRAN (R 3.1.0)                      
-##  htmltools  * 0.2.6      2014-09-08 CRAN (R 3.1.1)                      
+##  htmltools  * 0.2.8      2015-03-02 Github (rstudio/htmltools@cdea0fa)  
 ##  httr       * 0.6.1.9000 2015-01-09 Github (hadley/httr@778ed3c)        
 ##  knitr      * 1.9        2015-01-20 CRAN (R 3.1.2)                      
 ##  MASS       * 7.3-39     2015-02-20 CRAN (R 3.1.2)                      
+##  memoise    * 0.2.1      2014-04-22 CRAN (R 3.1.0)                      
 ##  munsell    * 0.4.2      2013-07-11 CRAN (R 3.1.0)                      
 ##  plyr       * 1.8.1      2014-02-26 CRAN (R 3.1.0)                      
 ##  proto      * 0.3-10     2012-12-22 CRAN (R 3.1.0)                      
