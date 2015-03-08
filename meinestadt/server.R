@@ -206,9 +206,69 @@ getDataset1 <- reactive({
 
 ## Generate a summary view
 
-output$summaryView <- renderPrint({
-        summary(getDataset1())
+## Caption function
+Mode <- function(x) {
+        ux <- unique(x)
+        ux[which.max(tabulate(match(x, ux)))]
+}
+
+std <- function(x) {
+        sd(x)/sqrt(length(x))
+}
+
+output$summaryCaption1 <- renderText({
+        paste("Descriptive statistics for the", 
+              input$tabOne, "website.")
 })
+
+output$summaryCaption2 <- renderText({
+        paste("Minimum:", round(min(getDataset1()), digits = 2))
+})
+
+output$summaryCaption3 <- renderText({
+        paste("1st Quartile:", round(quantile(getDataset1(), probs=0.25), digits = 2))
+})
+
+output$summaryCaption4 <- renderText({
+        paste("3rd Quartile:", round(quantile(getDataset1(), probs=0.75), digits = 2))
+})
+
+output$summaryCaption5 <- renderText({
+        paste("Maximum:", round(max(getDataset1(), probs=0.75), digits = 2))
+})
+
+output$summaryCaption6 <- renderText({
+        paste("Median:", round(median(getDataset1()), digits = 2))
+})
+
+output$summaryCaption7 <- renderText({
+        paste("Mean:", round(mean(getDataset1()), digits = 2))
+})
+
+output$summaryCaption8 <- renderText({
+        paste("Mode:", round(Mode(getDataset1()), digits = 2))
+})
+
+output$summaryCaption9 <- renderText({
+        paste("Standard Deviation:", round(sd(getDataset1()), digits = 2))
+})
+
+output$summaryCaption10 <- renderText({
+        paste("Skewness:", round(skewness(getDataset1()), digits = 2))
+})
+
+output$summaryCaption11 <- renderText({
+        paste("Kurtosis:", round(kurtosis(getDataset1()), digits = 2))
+})
+
+output$summaryCaption12 <- renderText({
+        paste("Median Absolute Deviation:", round(mad(getDataset1()), digits = 2))
+})
+
+output$summaryCaption13 <- renderText({
+        paste("Standard Error:", round(std(getDataset1()), digits = 2))
+})
+
 
 
 ## Tabset 5
