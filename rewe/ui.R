@@ -41,7 +41,7 @@ shinyUI(navbarPage("Time on Site Analysis",
 
 tabPanel("Overview",
          
-         #tags$head(includeScript("./js/ga-rewe.js")),
+         tags$head(includeScript("./js/ga-rewe.js")),
          
          sidebarLayout(
                  
