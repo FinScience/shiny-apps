@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-09 13:17:00 CET"
+## [1] "2015-03-09 14:16:51 CET"
 ```
 
 ***
@@ -247,7 +247,7 @@ devtools::session_info()
 
 [4]: http://www.lidl.de "lidl Website"
 
-[5]: http://www.kaufland.de "Das Örtliche Website"
+[5]: http://www.kaufland.de "kaufland Website"
 
 [6]: http://www.penny.de "penny Website"
 

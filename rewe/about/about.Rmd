@@ -216,7 +216,7 @@ devtools::session_info()
 
 [4]: http://www.lidl.de "lidl Website"
 
-[5]: http://www.kaufland.de "Das Örtliche Website"
+[5]: http://www.kaufland.de "kaufland Website"
 
 [6]: http://www.penny.de "penny Website"
 

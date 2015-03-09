@@ -6,9 +6,9 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##      Live version of this app: https://apps.nierhoff.info/rewe       ##
+##         Live version of this app: https://apps.nierhoff.info/rewe          ##
 ##                                                                            ##
-##   Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewe  ##
+##      Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewe     ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
