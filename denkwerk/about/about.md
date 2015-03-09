@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-09 14:04:59 CET"
+## [1] "2015-03-09 14:11:09 CET"
 ```
 
 ***
@@ -237,7 +237,7 @@ devtools::session_info()
 ```
 
 
-[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/obi  "Github Repo"
+[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/denkwerk  "Github Repo"
 
 [2]: http://www.obi.de "obi Website"
 
