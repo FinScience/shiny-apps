@@ -87,8 +87,9 @@ library(rjson)
 library(bit64)
 library(httr)
 library(plyr)
-library(ape)
+library(dendextend)
 library(rJava)
+library(topicmodels)
 library(shinythemes)
 ```
 

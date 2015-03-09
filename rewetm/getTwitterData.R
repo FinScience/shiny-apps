@@ -33,7 +33,7 @@ REWE.df <- twListToDF(REWE_tweets)
 toom.df <- twListToDF(toom_tweets)
 BIPA.df <- twListToDF(BIPA_tweets)
 
-## Save text column DF as .csv file
+## Save text column DF as .csv file for corpus
 write.csv(REWE.df[,1], file = "./data/REWE.csv")
 write.csv(toom.df[,1], file = "./data/toom.csv")
 write.csv(BIPA.df[,1], file = "./data/BIPA.csv")

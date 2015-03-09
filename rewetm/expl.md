@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-03 00:52:55 CET"
+## [1] "2015-03-09 16:31:48 CET"
 ```
 
 ***
@@ -27,7 +27,7 @@ Related Twitter Accounts:
 
 * [REWE][2]
 
-        Number of analyzed tweets after cleaning: 699
+        Number of analyzed tweets after cleaning: 688
 
 * [toom][3] 
 
@@ -35,7 +35,7 @@ Related Twitter Accounts:
 
 * [BIPA][4] 
         
-        Number of analyzed tweets after cleaning: 621
+        Number of analyzed tweets after cleaning: 627
 
 ***
 
@@ -81,8 +81,9 @@ library(rjson)
 library(bit64)
 library(httr)
 library(plyr)
-library(ape)
+library(dendextend)
 library(rJava)
+library(topicmodels)
 library(shinythemes)
 ```
 
@@ -117,7 +118,7 @@ devtools::session_info()
 ##  package    * version    date       source                              
 ##  bit        * 1.1-12     2014-04-09 CRAN (R 3.1.0)                      
 ##  bit64      * 0.9-4      2014-04-09 CRAN (R 3.1.0)                      
-##  colorspace * 1.2-4      2013-09-30 CRAN (R 3.1.0)                      
+##  colorspace * 1.2-5      2015-03-03 CRAN (R 3.1.3)                      
 ##  DBI        * 0.3.1      2014-09-24 CRAN (R 3.1.1)                      
 ##  devtools   * 1.7.0      2015-01-17 CRAN (R 3.1.2)                      
 ##  digest     * 0.6.8      2014-12-31 CRAN (R 3.1.2)                      

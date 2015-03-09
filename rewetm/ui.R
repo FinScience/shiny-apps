@@ -30,9 +30,10 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(ape),
+        library(dendextend),
         library(BH),        
         library(rJava),
+        library(topicmodels),
         library(qdap)))
 
 
@@ -54,7 +55,7 @@ tabPanel("Words",
                  
                  sidebarPanel(
                          radioButtons(inputId = "tdmwc",
-                                      label = "Select Twitter account:",
+                                      label = "Select a Twitter account:",
                                       choices = accounts),
                          
                          tags$hr(),
@@ -101,7 +102,7 @@ tabPanel("Cluster Dendrogram",
                  
                  sidebarPanel(
                          radioButtons(inputId = "tdmcd",
-                                      label = "Select Twitter account:",
+                                      label = "Select a Twitter account:",
                                       choices = accounts),
                          
                          tags$hr(),
@@ -132,14 +133,14 @@ tabPanel("Association Plot",
                  
                  sidebarPanel(
                          radioButtons(inputId = "tdmap",
-                                      label = "Select Twitter account:",
+                                      label = "Select a Twitter account:",
                                       choices = accounts),
                          
                          tags$hr(),
                          
                          sliderInput("lowfreqAssoc", 
                                      label = "Number of frequent terms:",
-                                     min = 50, max = 250, value = 105),
+                                     min = 50, max = 250, value = 110),
                          
                          width = 3),
                  
@@ -161,7 +162,7 @@ tabPanel("Term Frequency",
                  
                  sidebarPanel(
                          radioButtons(inputId = "tdmtf",
-                                      label = "Select Twitter account:",
+                                      label = "Select a Twitter account:",
                                       choices = accounts),
                          
                          tags$hr(),

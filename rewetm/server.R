@@ -30,9 +30,10 @@ suppressPackageStartupMessages(c(
         library(ggplot2),
         library(RCurl),
         library(bitops),
-        library(ape),
+        library(dendextend),
         library(BH),
         library(rJava),
+        library(topicmodels),
         library(qdap)))
 
 source("globalCorpus.R")
@@ -134,14 +135,14 @@ getTdmcd <- reactive({
 
 clusterPlotInput <- function() {
         
-        tdm2 <- removeSparseTerms(getTdmcd(), sparse = 0.95)
+        tdm2 <- removeSparseTerms(getTdmcd(), sparse = 0.90)
         m2 <- as.matrix(tdm2)
         # Cluster terms
         distMatrix <- dist(scale(m2))
         fit <- hclust(distMatrix, method = "ward.D")
+        #dend <- color_branches(fit, k = input$clusterNumber)
         
         plot(fit)
-        #plot(as.phylo(fit), cex = 0.9, label.offset = 1, type = "fan")
         rect.hclust(fit, k = input$clusterNumber)
 }
 
@@ -222,53 +223,54 @@ output$assocPlot <- renderPlot({
 })
 
 ############################### ~~~~~~~~4~~~~~~~~ ##############################
-        
+
 ## NAVTAB 4 - Term Frequency Plot & Table
 
-getTdmtf <- reactive({
+        getTdmtf <- reactive({
+                
+                getTermMatrix(input$tdmtf)
+                
+        })
         
-        getTermMatrix(input$tdmtf)
+        ## Tabset Tab 1
         
-})
+        freqPlotInput <- function() {
+                
+                freq.terms <- findFreqTerms(getTdmtf(), lowfreq = input$freqNumber)
+                term.freq <- rowSums(as.matrix(getTdmtf()))
+                term.freq <- subset(term.freq, term.freq >= input$freqNumber)
+                freq.df <- data.frame(term = names(term.freq), freq = term.freq)
+                freq.df <- transform(freq.df, term = reorder(term, freq))
+                freqPlot <- ggplot(freq.df, aes(x = term, y = freq, fill = freq)) 
+                freqPlot + geom_bar(width = 0.7, stat = "identity") +
+                        labs(title = "Most Frequent Terms") +
+                        labs(y = "Count") + 
+                        labs(x = "Terms") + 
+                        coord_flip() +
+                        theme_bw()
+        }
+        
+        output$freqPlot <- renderPlot({
+                
+                freqPlotInput()
+                
+        })
+        
+        ## Tabset Tab 2
+        
+        freqTableInput <- function() {
+                
+                freq.terms <- findFreqTerms(getTdmtf(), lowfreq = input$freqNumber)
+                term.freq <- rowSums(as.matrix(getTdmtf()))
+                term.freq <- subset(term.freq, term.freq >= input$freqNumber)
+                freq.df <- data.frame(term = names(term.freq), freq = term.freq)
+                freq.df <- transform(freq.df, term = reorder(term, freq)) 
+        }
+        
+        output$freqTable <- renderDataTable({
+                
+                freqTableInput()
+                
+        })
 
-## Tabset Tab 1
-
-freqPlotInput <- function() {
-        
-        freq.terms <- findFreqTerms(getTdmtf(), lowfreq = input$freqNumber)
-        term.freq <- rowSums(as.matrix(getTdmtf()))
-        term.freq <- subset(term.freq, term.freq >= input$freqNumber)
-        freq.df <- data.frame(term = names(term.freq), freq = term.freq)
-        freq.df <- transform(freq.df, term = reorder(term, freq))
-        freqPlot <- ggplot(freq.df, aes(x = term, y = freq, fill = freq)) 
-        freqPlot + geom_bar(width = 0.7, stat = "identity") +
-                labs(title = "Most Frequent Terms") +
-                labs(y = "Count") + 
-                labs(x = "Terms") + 
-                coord_flip() +
-                theme_bw()
-}
-
-output$freqPlot <- renderPlot({
-        
-        freqPlotInput()
-        
-})
-
-## Tabset Tab 1
-
-freqTableInput <- function() {
-        
-        freq.terms <- findFreqTerms(getTdmtf(), lowfreq = input$freqNumber)
-        term.freq <- rowSums(as.matrix(getTdmtf()))
-        term.freq <- subset(term.freq, term.freq >= input$freqNumber)
-        freq.df <- data.frame(term = names(term.freq), freq = term.freq)
-        freq.df <- transform(freq.df, term = reorder(term, freq)) 
-}
-
-output$freqTable <- renderDataTable({
-        
-        freqTableInput()
-        
-})
 })
