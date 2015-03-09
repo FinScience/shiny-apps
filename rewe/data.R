@@ -6,9 +6,9 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: http://apps.nierhoff.info/rewetos        ##
+##      Live version of this app: https://apps.nierhoff.info/meinestadt       ##
 ##                                                                            ##
-##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetos    ##
+##   Github: https://github.com/mhnierhoff/shiny-apps/tree/master/meinestadt  ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
@@ -24,6 +24,6 @@ dat <- read.csv("./data/tos.csv",
 
 tos <- na.omit(dat)
 
-tosa <- ts(tos, start=c(2014, yday("2014-07-01")), frequency=365.3)
+tosa <- ts(tos, start=c(2014, yday("2014-09-09")), frequency=365.3)
 
 write.csv(tosa, "./data/data.csv")

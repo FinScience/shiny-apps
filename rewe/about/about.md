@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-02-23 15:52:19 CET"
+## [1] "2015-03-09 13:17:00 CET"
 ```
 
 ***
@@ -28,9 +28,14 @@ Related websites:
 
 * [rewe.de][2]
 
-* [toom-baumarkt.de][3]
+* [edeka.de][3]
 
-* [bipa.at][4]
+* [lidl.de][4]
+
+* [kaufland.de][5]
+
+* [penny.de][6]
+
 
 ***
 
@@ -38,7 +43,7 @@ Related websites:
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][5]
+In case of any questions related to this application, feel free to write [me a mail.][7]
 
 ***
 
@@ -46,9 +51,9 @@ In case of any questions related to this application, feel free to write [me a m
 
 In simple but appropriate words:
 
-> In statistics, exploratory data analysis (EDA) is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. [(wikipedia.org)][6]
+> In statistics, exploratory data analysis (EDA) is an approach to analyzing data sets to summarize their main characteristics, often with visual methods. [(wikipedia.org)][8]
 
-The line chart gives an first impression of the selected data set, while the boxplot shows the median, quartiles, outliers and also gives a first view on the respective distribution. Finally the histogram enables a clear presentation of the distribution of the selected data set. At least the raw data tab makes it possible to check every single value of the data set.
+The line chart gives an first impression of the selected data set, while the boxplot shows the median, quartiles, outliers and also gives a first view on the respective distribution. The summary lists all relevant results for a discriptive statistical analysis. Finally the histogram enables a clear presentation of the distribution of the selected data set. At least the raw data tab makes it possible to check every single value of the data set.
 
 ***
 
@@ -155,7 +160,7 @@ Hyndman RJ and Khandakar Y (2008). “Automatic time series forecasting: the for
 
 ### Third Tab - Breakout Detection
 
-The Breakout Detection is being solved through the Twitter R package with the respective name. You can check the code and more information in their [repo on Github.][7]
+The Breakout Detection is being solved through the Twitter R package with the respective name. You can check the code and more information in their [repo on Github.][9]
 
 > The underlying algorithm – referred to as E-Divisive with Medians (EDM) – employs energy statistics to detect divergence in mean. Note that EDM can also be used detect change in distribution in a given time series. EDM uses robust statistical metrics, viz., median, and estimates the statistical significance of a breakout through a permutation test.
 
@@ -169,7 +174,7 @@ This decomposition formula splits the data into seasonal, trend and irregular co
 
 #### STL Decomposition
 
-> STL is a very versatile and robust method for decomposing time series. STL is an acronym for “Seasonal and Trend decomposition using Loess”, while Loess is a method for estimating nonlinear relationships. The STL method was developed by Cleveland et al. (1990) [(Source)][8]
+> STL is a very versatile and robust method for decomposing time series. STL is an acronym for “Seasonal and Trend decomposition using Loess”, while Loess is a method for estimating nonlinear relationships. The STL method was developed by Cleveland et al. (1990) [(Source)][10]
 
 ***
 
@@ -220,34 +225,38 @@ devtools::session_info()
 ```
 
 ```
-##  package    * version date       source        
-##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.2)
-##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.2)
-##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.0)
-##  formatR    * 1.0     2014-08-25 CRAN (R 3.1.1)
-##  htmltools  * 0.2.6   2014-09-08 CRAN (R 3.1.1)
-##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.2)
-##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.2)
-##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.2)
-##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.2)
+##  package    * version date       source                            
+##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.2)                    
+##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.2)                    
+##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.0)                    
+##  formatR    * 1.0     2014-08-25 CRAN (R 3.1.1)                    
+##  htmltools  * 0.2.8   2015-03-02 Github (rstudio/htmltools@cdea0fa)
+##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.2)                    
+##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.2)                    
+##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.2)                    
+##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.2)                    
 ##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.0)
 ```
 
 
-[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetos  "Github Repo"
+[1]: https://github.com/mhnierhoff/shiny-apps/tree/master/rewe  "Github Repo"
 
-[2]: http://www.rewe.de "Rewe Website"
+[2]: http://www.rewe.de "rewe Website"
 
-[3]: http://www.toom-baumarkt.de "Toom Baumarkt Website"
+[3]: http://www.edeka.de "edeka Website"
 
-[4]: http://www.bipa.at "Bipa Website"
+[4]: http://www.lidl.de "lidl Website"
 
-[5]: http://nierhoff.info/#contact "Contact"
+[5]: http://www.kaufland.de "Das Örtliche Website"
 
-[6]: http://en.wikipedia.org/wiki/Exploratory_data_analysis "EDA on wikipeda.org"
+[6]: http://www.penny.de "penny Website"
 
-[7]: https://github.com/twitter/BreakoutDetection "Twitter Breakout Detection R Package"
+[7]: http://nierhoff.info/#contact "Contact"
 
-[8]: https://www.otexts.org/fpp/6/5 "STL Decomposition"
+[8]: http://en.wikipedia.org/wiki/Exploratory_data_analysis "EDA on wikipeda.org"
+
+[9]: https://github.com/twitter/BreakoutDetection "Twitter Breakout Detection R Package"
+
+[10]: https://www.otexts.org/fpp/6/5 "STL Decomposition"
 
 ***

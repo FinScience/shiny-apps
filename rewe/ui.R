@@ -6,9 +6,9 @@
 ##                                                                            ##
 ##                           http://nierhoff.info                             ##
 ##                                                                            ##
-##         Live version of this app: http://apps.nierhoff.info/rewetos        ##
+##      Live version of this app: https://apps.nierhoff.info/rewe       ##
 ##                                                                            ##
-##    Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewetos    ##
+##   Github: https://github.com/mhnierhoff/shiny-apps/tree/master/rewe  ##
 ##                                                                            ##
 ################# ~~~~~~~~~~~~~~~~~ ######## ~~~~~~~~~~~~~~~~~ #################
 
@@ -28,17 +28,20 @@ suppressPackageStartupMessages(c(
         library(BreakoutDetection),
         library(rmarkdown)))
 
+
 shinyUI(navbarPage("Time on Site Analysis", 
                    
-                   theme = "flatly.css",
+                   theme = shinytheme("flatly"),
+                   
+                   
                    
 ############################### ~~~~~~~~1~~~~~~~~ ##############################                   
-                   
+
 ## NAVTAB 1 - EDA
 
 tabPanel("Overview",
          
-         tags$head(includeScript("./www/ga-rewetos.js")),
+         #tags$head(includeScript("./js/ga-rewe.js")),
          
          sidebarLayout(
                  
@@ -48,10 +51,10 @@ tabPanel("Overview",
                          tags$br(),
                          radioButtons(inputId = "tabOne",
                                       label = "Select a website:",
-                                      choices = c("REWE", 
-                                                  "toom", 
-                                                  "BIPA"),
-                                      selected = "REWE"),
+                                      choices = c("rewe.de","edeka.de", 
+                                                  "lidl.de", "kaufland.de", 
+                                                  "penny.de"),
+                                      selected = "rewe.de"),
                          
                          width = 3),
                  
@@ -66,7 +69,7 @@ tabPanel("Overview",
                                  tabPanel("Boxplot",
                                           plotOutput("boxPlot"),
                                           tags$div(textOutput("boxPlotCaption"), 
-                                                   align = "center"),
+                                                 align = "center"),
                                           tags$hr(),
                                           plotOutput("cboxPlot")),
                                  
@@ -76,21 +79,35 @@ tabPanel("Overview",
                                                    align = "center")),
                                  
                                  tabPanel("Summary",
-                                          verbatimTextOutput("summaryView")),
+                                          tags$br(),
+                                          textOutput("summaryCaption1"),
+                                          tags$br(),
+                                          textOutput("summaryCaption2"),
+                                          textOutput("summaryCaption3"),
+                                          textOutput("summaryCaption4"),
+                                          textOutput("summaryCaption5"),
+                                          textOutput("summaryCaption6"),
+                                          textOutput("summaryCaption7"),
+                                          textOutput("summaryCaption8"),
+                                          textOutput("summaryCaption9"),
+                                          textOutput("summaryCaption10"),
+                                          textOutput("summaryCaption11"),
+                                          textOutput("summaryCaption12"),
+                                          textOutput("summaryCaption13")),
                                  
                                  tabPanel("Raw Data",
                                           tags$br(),
                                           dataTableOutput("dataTable"))
-                                 
+                                               
                          ),
                          width = 6)
          )
 ),
                    
 ############################### ~~~~~~~~2~~~~~~~~ ##############################
-                   
+
 ## NAVTAB 2 - Forecasting
-                   
+
 tabPanel("Forecasting",
          
          sidebarLayout(
@@ -98,20 +115,19 @@ tabPanel("Forecasting",
                  sidebarPanel(
                          radioButtons(inputId = "tabTwo",
                                       label = "Select a website:",
-                                      choices = c("REWE", 
-                                                  "toom", 
-                                                  "BIPA"),
-                                      selected = "REWE"),
-                         
+                                      choices = c("rewe.de","edeka.de", 
+                                                  "lidl.de", "kaufland.de", 
+                                                  "penny.de"),
+                                      selected = "rewe.de"),
+
                          tags$hr(),
                          
                          selectInput(inputId = "model",
                                      label = "Select a Forecasting model:",
-                                     choices = c("ARIMA", "ETS", "TBATS", 
-                                                 "StructTS", "Holt-Winters", 
-                                                 "Theta", "Cubic Spline",
-                                                 "Random Walk", "Naive",
-                                                 "Mean"),
+                                     choices = c("ARIMA", "ETS", "StructTS", 
+                                                 "Holt-Winters", "Theta", 
+                                                 "Cubic Spline", "Random Walk",
+                                                 "TBATS","Naive", "Mean"),
                                      selected = "ARIMA"),
                          
                          tags$hr(),
@@ -133,9 +149,9 @@ tabPanel("Forecasting",
                    
                    
 ############################### ~~~~~~~~3~~~~~~~~ ##############################                   
-                   
-## NAVTAB 3 - Breakout Detection
-                   
+
+## NAVTAB 3 - Anomaly Detection
+
 tabPanel("Breakout Detection",
          
          sidebarLayout(
@@ -143,10 +159,10 @@ tabPanel("Breakout Detection",
                  sidebarPanel(
                          radioButtons(inputId = "tabThree",
                                       label = "Select a website:",
-                                      choices = c("REWE", 
-                                                  "toom", 
-                                                  "BIPA"),
-                                      selected = "REWE"),
+                                      choices = c("rewe.de","edeka.de", 
+                                                  "lidl.de", "kaufland.de", 
+                                                  "penny.de"),
+                                      selected = "rewe.de"),
                          
                          width = 3),
                  
@@ -165,7 +181,7 @@ tabPanel("Breakout Detection",
 ############################### ~~~~~~~~4~~~~~~~~ ##############################
                    
 ## NAVTAB 4 - Decomposition
-                   
+
 tabPanel("Decomposition",
          
          sidebarLayout(
@@ -173,10 +189,10 @@ tabPanel("Decomposition",
                  sidebarPanel(
                          radioButtons(inputId = "tabFour",
                                       label = "Select a website:",
-                                      choices = c("REWE", 
-                                                  "toom", 
-                                                  "BIPA"),
-                                      selected = "REWE"),
+                                      choices = c("rewe.de","edeka.de", 
+                                                  "lidl.de", "kaufland.de", 
+                                                  "penny.de"),
+                                      selected = "rewe.de"),
                          
                          width = 3),
                  
@@ -205,12 +221,12 @@ tabPanel("Decomposition",
                  
          )
          
-),          
-                   
+),
+ 
 ############################### ~~~~~~~~5~~~~~~~~ ##############################
-                   
+
 ## NAVTAB 5 - Calendar View
-                   
+
 tabPanel("Calendar View",
          
          sidebarLayout(
@@ -218,10 +234,10 @@ tabPanel("Calendar View",
                  sidebarPanel(
                          radioButtons(inputId = "tabFive",
                                       label = "Select a website:",
-                                      choices = c("REWE", 
-                                                  "toom", 
-                                                  "BIPA"),
-                                      selected = "REWE"),
+                                      choices = c("rewe.de","edeka.de", 
+                                                  "lidl.de", "kaufland.de", 
+                                                  "penny.de"),
+                                      selected = "rewe.de"),
                          
                          width = 3),
                  
@@ -234,11 +250,11 @@ tabPanel("Calendar View",
          )
          
 ),
-                   
+
 ############################### ~~~~~~~~A~~~~~~~~ ##############################
                    
 ## About
-                   
+
 tabPanel("About",
          fluidRow(
                  column(1,
@@ -249,11 +265,11 @@ tabPanel("About",
                         p(""))
          )
 ),
-                   
+
 ############################### ~~~~~~~~F~~~~~~~~ ##############################
                    
 ## Footer
-
+                   
 tags$hr(),
 
 tags$span(style="color:darkslategrey", 
@@ -287,7 +303,7 @@ tags$span(style="color:grey",
                               href="http://www.rstudio.com/products/shiny/shiny-server",
                               target="_blank",
                               "Shiny Server."),
-                      ("Hosting on"), tags$a(
+                      ("Hosted on"), tags$a(
                               href="https://www.digitalocean.com/?refcode=f34ade566630",
                               target="_blank",
                               "DigitalOcean."),
@@ -296,6 +312,6 @@ tags$span(style="color:grey",
           
           tags$br()
           
-)
+        )
 )
 )
