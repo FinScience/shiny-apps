@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-08 14:41:34 CET"
+## [1] "2015-03-11 12:08:27 CET"
 ```
 
 ***
@@ -21,6 +21,10 @@ The code of this application can be found in this [Github repository.][1]
 ### Data Set
 
 The used data set was derived from an own account and own comparisons by the use of Alexa.com Competitive Intelligence metrics.
+
+About the metric:
+
+> Time on Site: The estimated daily time on site in seconds for this site. Historical data not available for sites ranked > 100,000
 
 The presented plots, forecasts and calculations relate to the Alexa Time on Site metric.
 
