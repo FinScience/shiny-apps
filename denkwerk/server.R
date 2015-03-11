@@ -231,7 +231,7 @@ getDataset1 <- reactive({
         })
         
         output$summaryCaption5 <- renderText({
-                paste("Maximum:", round(max(getDataset1(), probs=0.75), digits = 2))
+                paste("Maximum:", round(max(getDataset1()), digits = 2))
         })
         
         output$summaryCaption6 <- renderText({
