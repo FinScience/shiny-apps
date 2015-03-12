@@ -140,10 +140,9 @@ clusterPlotInput <- function() {
         # Cluster terms
         distMatrix <- dist(scale(m2))
         fit <- hclust(distMatrix, method = "ward.D")
-        #dend <- color_branches(fit, k = input$clusterNumber)
-        
-        plot(fit)
-        rect.hclust(fit, k = input$clusterNumber)
+        dend <- color_branches(fit, k = input$clusterNumber)
+        dend <- assign_values_to_branches_edgePar(object = dend, value = 3, edgePar = "lwd")
+        plot(dend)
 }
 
 output$clusterPlot <- renderPlot({
@@ -264,7 +263,7 @@ output$assocPlot <- renderPlot({
                 term.freq <- rowSums(as.matrix(getTdmtf()))
                 term.freq <- subset(term.freq, term.freq >= input$freqNumber)
                 freq.df <- data.frame(term = names(term.freq), freq = term.freq)
-                freq.df <- transform(freq.df, term = reorder(term, freq)) 
+                freq.df <- transform(freq.df, term = reorder(freq, term)) 
         }
         
         output$freqTable <- renderDataTable({

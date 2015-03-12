@@ -109,7 +109,7 @@ tabPanel("Cluster Dendrogram",
                          
                          sliderInput("clusterNumber", 
                                      label = "Number of terms cluster:",
-                                     min = 1, max = 8, value = 2),
+                                     min = 1, max = 5, value = 2),
                          
                          width = 3),
                  
