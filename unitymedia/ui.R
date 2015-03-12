@@ -63,7 +63,7 @@ tabPanel("Words",
                          sliderInput("minfreqWord", 
                                      label = "Minimum frequency 
                                              of plotted words:",
-                                     min = 5, max = 100, value = 35),
+                                     min = 5, max = 100, value = 20),
                          
                          tags$hr(),
                          
@@ -109,7 +109,7 @@ tabPanel("Cluster Dendrogram",
                          
                          sliderInput("clusterNumber", 
                                      label = "Number of terms cluster:",
-                                     min = 1, max = 15, value = 5),
+                                     min = 1, max = 8, value = 2),
                          
                          width = 3),
                  
@@ -140,7 +140,7 @@ tabPanel("Association Plot",
                          
                          sliderInput("lowfreqAssoc", 
                                      label = "Number of frequent terms:",
-                                     min = 50, max = 250, value = 110),
+                                     min = 15, max = 150, value = 55),
                          
                          width = 3),
                  
@@ -169,7 +169,7 @@ tabPanel("Term Frequency",
                          
                          sliderInput("freqNumber", 
                                      label = "Minimum frequency of terms:",
-                                     min = 25, max = 250, value = 75),
+                                     min = 10, max = 200, value = 35),
                          
                          width = 3),
                  

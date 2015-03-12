@@ -25,7 +25,6 @@ The code of this application can be found in this [Github repository][1].
 uni <- read.csv(file = "./data/Unitymedia.csv", sep=",", header = TRUE)
 vod <- read.csv(file = "./data/Vodafone.csv", sep=",", header = TRUE)
 tel <- read.csv(file = "./data/Telekom.csv", sep=",", header = TRUE)
-otwo <- read.csv(file = "./data/o2.csv", sep=",", header = TRUE)
 eins <- read.csv(file = "./data/einsundeins.csv", sep=",", header = TRUE)
 ```
 
@@ -46,11 +45,7 @@ Related Twitter Accounts:
         
         Number of analyzed tweets after cleaning: `r length(vod[,1])`
         
-* [o2][4] 
-        
-        Number of analyzed tweets after cleaning: `r length(otwo[,1])`
-        
-* [1&1][4] 
+* [1&1][5] 
         
         Number of analyzed tweets after cleaning: `r length(eins[,1])`
 
@@ -60,7 +55,7 @@ Related Twitter Accounts:
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][5]
+In case of any questions related to this application, feel free to write [me a mail.][6]
 
 ***
 
@@ -121,10 +116,8 @@ devtools::session_info()
 
 [4]: https://twitter.com/vodafone "Vodafone Twitter Account"
 
-[5]: https://twitter.com/o2entdecken "o2 Twitter Account"
+[5]: https://twitter.com/1und1 "1&1 Twitter Account"
 
-[6]: https://twitter.com/1und1 "1&1 Twitter Account"
-
-[7]: http://nierhoff.info/#contact "Contact"
+[6]: http://nierhoff.info/#contact "Contact"
 
 ***

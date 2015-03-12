@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-09 16:58:22 CET"
+## [1] "2015-03-12 13:56:27 CET"
 ```
 
 ***
@@ -27,23 +27,19 @@ Related Twitter Accounts:
 
 * [Unitymedia][2]
 
-        Number of analyzed tweets after cleaning: 857
+        Number of analyzed tweets after cleaning: 1172
 
 * [Telekom][3] 
 
-        Number of analyzed tweets after cleaning: 892
+        Number of analyzed tweets after cleaning: 1268
 
 * [Vodafone][4] 
         
-        Number of analyzed tweets after cleaning: 913
+        Number of analyzed tweets after cleaning: 1349
         
-* [o2][4] 
+* [1&1][5] 
         
-        Number of analyzed tweets after cleaning: 240
-        
-* [1&1][4] 
-        
-        Number of analyzed tweets after cleaning: 516
+        Number of analyzed tweets after cleaning: 525
 
 ***
 
@@ -51,7 +47,7 @@ Related Twitter Accounts:
 
 This application is primarily a demo to show what is possible. 
 
-In case of any questions related to this application, feel free to write [me a mail.][5]
+In case of any questions related to this application, feel free to write [me a mail.][6]
 
 ***
 
@@ -123,17 +119,24 @@ devtools::session_info()
 ```
 
 ```
-##  package    * version date       source                            
-##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.2)                    
-##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.2)                    
-##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.0)                    
-##  formatR    * 1.0     2014-08-25 CRAN (R 3.1.1)                    
-##  htmltools  * 0.2.8   2015-03-02 Github (rstudio/htmltools@cdea0fa)
-##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.2)                    
-##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.2)                    
-##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.2)                    
-##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.2)                    
-##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.0)
+##  package    * version    date       source                              
+##  bit        * 1.1-12     2014-04-09 CRAN (R 3.1.0)                      
+##  bit64      * 0.9-4      2014-04-09 CRAN (R 3.1.0)                      
+##  DBI        * 0.3.1      2014-09-24 CRAN (R 3.1.1)                      
+##  devtools   * 1.7.0      2015-01-17 CRAN (R 3.1.2)                      
+##  digest     * 0.6.8      2014-12-31 CRAN (R 3.1.2)                      
+##  evaluate   * 0.5.5      2014-04-29 CRAN (R 3.1.0)                      
+##  formatR    * 1.0        2014-08-25 CRAN (R 3.1.1)                      
+##  htmltools  * 0.2.8      2015-03-02 Github (rstudio/htmltools@cdea0fa)  
+##  httr       * 0.6.1.9000 2015-01-09 Github (hadley/httr@778ed3c)        
+##  knitr      * 1.9        2015-01-20 CRAN (R 3.1.2)                      
+##  memoise    * 0.2.1      2014-04-22 CRAN (R 3.1.0)                      
+##  rjson      * 0.2.15     2014-11-03 CRAN (R 3.1.2)                      
+##  rmarkdown  * 0.5.1      2015-01-26 CRAN (R 3.1.2)                      
+##  rstudioapi * 0.2        2014-12-31 CRAN (R 3.1.2)                      
+##  stringr    * 0.6.2      2012-12-06 CRAN (R 3.1.2)                      
+##  twitteR    * 1.1.8      2015-01-09 Github (geoffjentry/twitteR@964f2d0)
+##  yaml       * 2.1.13     2014-06-12 CRAN (R 3.1.0)
 ```
 
 
@@ -146,10 +149,8 @@ devtools::session_info()
 
 [4]: https://twitter.com/vodafone "Vodafone Twitter Account"
 
-[5]: https://twitter.com/o2entdecken "o2 Twitter Account"
+[5]: https://twitter.com/1und1 "1&1 Twitter Account"
 
-[6]: https://twitter.com/1und1 "1&1 Twitter Account"
-
-[7]: http://nierhoff.info/#contact "Contact"
+[6]: http://nierhoff.info/#contact "Contact"
 
 ***

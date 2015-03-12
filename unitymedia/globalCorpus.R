@@ -25,7 +25,6 @@ library(memoise)
 accounts <- list("Unitymedia" = "Unitymedia",
                  "Telekom" = "Telekom",
                  "Vodafone" = "Vodafone",
-                 "o2" = "o2",
                  "1&1" = "einsundeins")
 
 getTermMatrix <- memoise(function(account) {
@@ -40,7 +39,7 @@ myCorpus <- Corpus(VectorSource(tweets))
 ## Make it work with the new tm package
 myCorpus <- tm_map(myCorpus,
                    content_transformer(function(x) iconv(x, to="UTF-8", sub="byte")),
-                   mc.cores=1)
+                   mc.cores=2)
 
 ## Convert to lower case
 myCorpus <- tm_map(myCorpus, content_transformer(tolower), lazy = TRUE)
@@ -57,6 +56,7 @@ myCorpus <- tm_map(myCorpus, content_transformer(removeURL))
 
 ## Remove stopwords from corpus
 myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("english"), "amp"))
+myCorpus <- tm_map(myCorpus, removeWords, c(stopwords("german")))
 
 ## Final corpus
 mytdm <- TermDocumentMatrix(myCorpus)
