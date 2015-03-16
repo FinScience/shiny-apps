@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-12 21:16:31 CET"
+## [1] "2015-03-16 12:53:57 CET"
 ```
 
 ***
@@ -31,15 +31,15 @@ Related Twitter Accounts:
 
 * [Telekom][3] 
 
-        Number of analyzed tweets after cleaning: 1268
+        Number of analyzed tweets after cleaning: 1283
 
 * [Vodafone][4] 
         
-        Number of analyzed tweets after cleaning: 1349
+        Number of analyzed tweets after cleaning: 1203
         
 * [1&1][5] 
         
-        Number of analyzed tweets after cleaning: 525
+        Number of analyzed tweets after cleaning: 541
 
 ***
 
