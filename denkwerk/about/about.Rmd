@@ -198,6 +198,9 @@ library(reshape)
 library(DT)
 library(RColorBrewer)
 library(BreakoutDetection)
+library(xts)
+library(dygraphs)
+library(magrittr)
 library(rmarkdown)
 ```
 
