@@ -26,6 +26,9 @@ suppressPackageStartupMessages(c(
         library(RColorBrewer),
         library(googleVis),
         library(BreakoutDetection),
+        library(xts),
+        library(dygraphs),
+        library(magrittr),
         library(rmarkdown)))
 
 
@@ -96,24 +99,18 @@ getDataset1 <- reactive({
 
 
         clinePlotInput <- function() {
-                mpdf <- data.frame(tos[2:5])
-                colnames(mpdf) <- c("navabi.de", "sheego.de", 
-                                    "happy-size.de", "ullapopken.de")
-                legNames <- names(mpdf)
-                customCol <- brewer.pal(n = 5, name = "Dark2")
-                matplot(mpdf, 
-                        type = "l",
-                        lty = 1,
-                        lwd = 2,
-                        main = "All websites in comparison",
-                        ylab = "Time on Site in seconds",
-                        col = customCol,
-                        xaxt = "n")
-                legend("topleft", legNames, lty = 0,text.col = customCol)
-                box()
+
+                dygA <- xts(tos[2:5], as.Date(tos$Date, format="%d.%m.%y"))
+                dygraph(dygA, main = "All websites in comparison") %>% 
+                        dyRangeSelector() %>%
+                        dyAxis("x", drawGrid = FALSE) %>%
+                        dyAxis("y", label = "Time on Site in seconds") %>%
+                        dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
+                        
+                
         }
 
-        output$clinePlot <- renderPlot({
+        output$clinePlot <- renderDygraph({
                 clinePlotInput()
         })
 

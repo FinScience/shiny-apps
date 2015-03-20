@@ -26,6 +26,9 @@ suppressPackageStartupMessages(c(
         library(RColorBrewer),
         library(googleVis),
         library(BreakoutDetection),
+        library(xts),
+        library(dygraphs),
+        library(magrittr),
         library(rmarkdown)))
 
 shinyUI(navbarPage("Time on Site Analysis", 
@@ -39,7 +42,7 @@ shinyUI(navbarPage("Time on Site Analysis",
 ## NAVTAB 1 - EDA
 tabPanel("Overview",
          
-         #tags$head(includeScript("./js/ga-bplusd-interactive.js")),
+         tags$head(includeScript("./js/ga-navabi.js")),
          
          sidebarLayout(
                  
@@ -63,7 +66,7 @@ tabPanel("Overview",
                                  tabPanel("Line Chart", 
                                           plotOutput("linePlot"),
                                           tags$hr(),
-                                          plotOutput("clinePlot")),
+                                          dygraphOutput("clinePlot")),
                                  
                                  tabPanel("Boxplot",
                                           plotOutput("boxPlot"),

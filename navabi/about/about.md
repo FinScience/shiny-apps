@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-18 10:57:10 CET"
+## [1] "2015-03-20 12:22:14 CET"
 ```
 
 ***
@@ -203,6 +203,9 @@ library(DT)
 library(RColorBrewer)
 library(googleVis)
 library(BreakoutDetection)
+library(xts)
+library(dygraphs)
+library(magrittr)
 library(rmarkdown)
 ```
 

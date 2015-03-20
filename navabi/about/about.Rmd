@@ -205,6 +205,9 @@ library(DT)
 library(RColorBrewer)
 library(googleVis)
 library(BreakoutDetection)
+library(xts)
+library(dygraphs)
+library(magrittr)
 library(rmarkdown)
 ```
 
