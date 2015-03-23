@@ -42,7 +42,7 @@ shinyUI(navbarPage("Time on Site Analysis",
 ## NAVTAB 1 - EDA
 tabPanel("Overview",
          
-         #tags$head(includeScript("./js/ga-digitaslbi.js")),
+         tags$head(includeScript("./js/ga-digitaslbi.js")),
          
          sidebarLayout(
                  
