@@ -60,7 +60,7 @@ getDataset1 <- reactive({
                      lwd = "1.5",
                      main = input$tabOne,
                      ylab = "Time on Site in seconds")
-                a <- seq(as.Date(tos$Date, format = "%d.%m.%y")[1] - 1, 
+                a <- seq(as.Date(tos$Date, format = "%d.%m.%y")[1] - 0, 
                          by = "months", length = length(date) + 11)
                 axis(1, at = as.numeric(a)/365.3 + 1970, 
                      labels = format(a, format = "%d.%m.%Y"), cex.axis = 0.9)
@@ -313,7 +313,7 @@ forecastPlotInput <- function() {
         x <- forecast(getModel(), h=input$ahead)
         
         plot(x, flty = 3, axes = FALSE)
-        a <- seq(as.Date(tos$Date, format = "%d.%m.%y")[1] - 1, 
+        a <- seq(as.Date(tos$Date, format = "%d.%m.%y")[1] - 0, 
                  by = "months", length = length(date) + 11)
         axis(1, at = as.numeric(a)/365.3 + 1970, 
              labels = format(a, format = "%d/%m/%Y"), 
