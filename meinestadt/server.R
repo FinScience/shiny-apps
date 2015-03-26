@@ -26,6 +26,9 @@ suppressPackageStartupMessages(c(
         library(RColorBrewer),
         library(googleVis),
         library(BreakoutDetection),
+        library(xts),
+        library(dygraphs),
+        library(magrittr),
         library(rmarkdown)))
 
 
@@ -58,7 +61,7 @@ getDataset1 <- reactive({
                      lwd = "1.5",
                      main = input$tabOne,
                      ylab = "Time on Site in seconds")
-                a <- seq(as.Date(tos$Date, format = "%d.%m.%y")[1] - 1, 
+                a <- seq(as.Date(tos$Date, format = "%d.%m.%y")[1] - 0, 
                          by = "months", length = length(date) + 11)
                 axis(1, at = as.numeric(a)/365.3 + 1970, 
                      labels = format(a, format = "%d.%m.%Y"), cex.axis = 0.9)
@@ -97,24 +100,16 @@ getDataset1 <- reactive({
 
 
         clinePlotInput <- function() {
-                mpdf <- data.frame(tos[2:6])
-                colnames(mpdf) <- c("meinestadt.de","yellowmap.de", 
-                                    "gelbeseiten.de", "dasoertliche.de", 
-                                    "goyellow.de")
-                legNames <- names(mpdf)
-                customCol <- brewer.pal(n = 5, name = "Dark2")
-                matplot(mpdf, 
-                        type = "l",
-                        lty = 1,
-                        lwd = 2,
-                        main = "All websites in comparison",
-                        ylab = "Time on Site in seconds",
-                        col = customCol,
-                        xaxt = "n")
-                legend("topright", legNames, lty = 0,text.col = customCol)
+        
+        dygA <- xts(tos[2:6], as.Date(tos$Date, format="%d.%m.%y"))
+        dygraph(dygA, main = "All websites in comparison") %>% 
+                dyRangeSelector() %>%
+                dyAxis("x", drawGrid = FALSE) %>%
+                dyAxis("y", label = "Time on Site in seconds") %>%
+                dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
         }
 
-        output$clinePlot <- renderPlot({
+        output$clinePlot <- renderDygraph({
                 clinePlotInput()
         })
 
