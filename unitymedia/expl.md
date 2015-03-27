@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-16 12:53:57 CET"
+## [1] "2015-03-27 14:01:20 CET"
 ```
 
 ***
@@ -27,19 +27,19 @@ Related Twitter Accounts:
 
 * [Unitymedia][2]
 
-        Number of analyzed tweets after cleaning: 1172
+        Number of analyzed tweets after cleaning: 1181
 
 * [Telekom][3] 
 
-        Number of analyzed tweets after cleaning: 1283
+        Number of analyzed tweets after cleaning: 1310
 
 * [Vodafone][4] 
         
-        Number of analyzed tweets after cleaning: 1203
+        Number of analyzed tweets after cleaning: 1115
         
 * [1&1][5] 
         
-        Number of analyzed tweets after cleaning: 541
+        Number of analyzed tweets after cleaning: 489
 
 ***
 
@@ -106,7 +106,7 @@ devtools::session_info()
 
 ```
 ##  setting  value                       
-##  version  R version 3.1.2 (2014-10-31)
+##  version  R version 3.1.3 (2015-03-09)
 ##  system   x86_64, darwin13.4.0        
 ##  ui       X11                         
 ##  language (EN)                        
