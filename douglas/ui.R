@@ -26,6 +26,9 @@ suppressPackageStartupMessages(c(
         library(RColorBrewer),
         library(googleVis),
         library(BreakoutDetection),
+        library(xts),
+        library(dygraphs),
+        library(magrittr),
         library(rmarkdown)))
 
 shinyUI(navbarPage("Time on Site Analysis", 
@@ -63,7 +66,7 @@ tabPanel("Overview",
                                  tabPanel("Line Chart", 
                                           plotOutput("linePlot"),
                                           tags$hr(),
-                                          plotOutput("clinePlot")),
+                                          dygraphOutput("clinePlot")),
                                  
                                  tabPanel("Boxplot",
                                           plotOutput("boxPlot"),

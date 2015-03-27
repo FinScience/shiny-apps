@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-16 12:46:15 CET"
+## [1] "2015-03-27 13:56:23 CET"
 ```
 
 ***
@@ -227,7 +227,7 @@ devtools::session_info()
 
 ```
 ##  setting  value                       
-##  version  R version 3.1.2 (2014-10-31)
+##  version  R version 3.1.3 (2015-03-09)
 ##  system   x86_64, darwin13.4.0        
 ##  ui       X11                         
 ##  language (EN)                        
