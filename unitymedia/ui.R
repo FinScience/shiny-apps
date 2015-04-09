@@ -169,29 +169,14 @@ tabPanel("Term Frequency",
                          
                          sliderInput("freqNumber", 
                                      label = "Minimum frequency of terms:",
-                                     min = 10, max = 200, value = 35),
+                                     min = 10, max = 200, value = 45),
                          
                          width = 3),
                  
                  mainPanel(
                          
+                         plotOutput("freqPlot"),
                          
-                         tabsetPanel(
-                                 
-                                 
-                                 tabPanel("Chart",
-                                          
-                                          
-                                          plotOutput("freqPlot")),
-                                 
-                                 
-                                 
-                                 tabPanel("Table",
-                                          
-                                          
-                                          dataTableOutput("freqTable"))
-                                 
-                         ),
                          
                          width = 6)
                  

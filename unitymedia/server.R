@@ -254,22 +254,5 @@ output$assocPlot <- renderPlot({
                 freqPlotInput()
                 
         })
-        
-        ## Tabset Tab 2
-        
-        freqTableInput <- function() {
-                
-                freq.terms <- findFreqTerms(getTdmtf(), lowfreq = input$freqNumber)
-                term.freq <- rowSums(as.matrix(getTdmtf()))
-                term.freq <- subset(term.freq, term.freq >= input$freqNumber)
-                freq.df <- data.frame(term = names(term.freq), freq = term.freq)
-                freq.df <- transform(freq.df, term = reorder(freq, term)) 
-        }
-        
-        output$freqTable <- renderDataTable({
-                
-                freqTableInput()
-                
-        })
 
 })
