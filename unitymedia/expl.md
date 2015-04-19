@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-04-09 23:39:16 CEST"
+## [1] "2015-04-19 21:47:50 CEST"
 ```
 
 ***
@@ -27,19 +27,19 @@ Related Twitter Accounts:
 
 * [Unitymedia][2]
 
-        Number of analyzed tweets after cleaning: 1195
+        Number of analyzed tweets after cleaning: 1197
 
 * [Telekom][3] 
 
-        Number of analyzed tweets after cleaning: 1312
+        Number of analyzed tweets after cleaning: 1316
 
 * [Vodafone][4] 
         
-        Number of analyzed tweets after cleaning: 1132
+        Number of analyzed tweets after cleaning: 1163
         
 * [1&1][5] 
         
-        Number of analyzed tweets after cleaning: 490
+        Number of analyzed tweets after cleaning: 516
 
 ***
 
@@ -125,14 +125,14 @@ devtools::session_info()
 ##  DBI        * 0.3.1      2014-09-24 CRAN (R 3.1.1)                      
 ##  devtools   * 1.7.0      2015-01-17 CRAN (R 3.1.2)                      
 ##  digest     * 0.6.8      2014-12-31 CRAN (R 3.1.2)                      
-##  evaluate   * 0.5.5      2014-04-29 CRAN (R 3.1.0)                      
+##  evaluate   * 0.6        2015-04-13 CRAN (R 3.1.3)                      
 ##  formatR    * 1.1        2015-03-29 CRAN (R 3.1.3)                      
 ##  htmltools  * 0.2.8      2015-03-02 Github (rstudio/htmltools@cdea0fa)  
 ##  httr       * 0.6.1.9000 2015-01-09 Github (hadley/httr@778ed3c)        
 ##  knitr      * 1.9        2015-01-20 CRAN (R 3.1.2)                      
 ##  memoise    * 0.2.1      2014-04-22 CRAN (R 3.1.0)                      
 ##  rjson      * 0.2.15     2014-11-03 CRAN (R 3.1.2)                      
-##  rmarkdown  * 0.5.1      2015-01-26 CRAN (R 3.1.2)                      
+##  rmarkdown  * 0.5.3.2    2015-04-17 Github (rstudio/rmarkdown@a691fda)  
 ##  rstudioapi * 0.3.1      2015-04-07 CRAN (R 3.1.3)                      
 ##  stringr    * 0.6.2      2012-12-06 CRAN (R 3.1.2)                      
 ##  twitteR    * 1.1.8      2015-01-09 Github (geoffjentry/twitteR@964f2d0)
