@@ -7,7 +7,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2015-03-31 11:59:22 CEST"
+## [1] "2015-04-23 17:19:20 CEST"
 ```
 
 ***
@@ -243,12 +243,12 @@ devtools::session_info()
 ##  package    * version date       source                            
 ##  devtools   * 1.7.0   2015-01-17 CRAN (R 3.1.2)                    
 ##  digest     * 0.6.8   2014-12-31 CRAN (R 3.1.2)                    
-##  evaluate   * 0.5.5   2014-04-29 CRAN (R 3.1.0)                    
-##  formatR    * 1.0     2014-08-25 CRAN (R 3.1.1)                    
+##  evaluate   * 0.6     2015-04-13 CRAN (R 3.1.3)                    
+##  formatR    * 1.1     2015-03-29 CRAN (R 3.1.3)                    
 ##  htmltools  * 0.2.8   2015-03-02 Github (rstudio/htmltools@cdea0fa)
 ##  knitr      * 1.9     2015-01-20 CRAN (R 3.1.2)                    
-##  rmarkdown  * 0.5.1   2015-01-26 CRAN (R 3.1.2)                    
-##  rstudioapi * 0.2     2014-12-31 CRAN (R 3.1.2)                    
+##  rmarkdown  * 0.5.3.2 2015-04-17 Github (rstudio/rmarkdown@a691fda)
+##  rstudioapi * 0.3.1   2015-04-07 CRAN (R 3.1.3)                    
 ##  stringr    * 0.6.2   2012-12-06 CRAN (R 3.1.2)                    
 ##  yaml       * 2.1.13  2014-06-12 CRAN (R 3.1.0)
 ```
